@@ -1,0 +1,50 @@
+.sort {
+  float: right;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.sort__title {
+  padding-right: 15px;
+  display: inline-block;
+  color: #424242;
+  float: left;
+  line-height: 26px;
+}
+
+.sort__list {
+  
+}
+
+.sort__link{
+  display: inline-block;
+  padding-left: 25px;
+  margin-right: 20px;
+  margin-bottom: 5px;
+  color: #838383;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.sort__link.selected {
+  color: $active-color;
+  background: url("../images/icons/ic_check.svg") no-repeat left center;
+  background-size: 18px 16px;
+}
+
+@media (min-width: 768px) {
+	.sort {
+   
+  }
+
+  .sort__link {
+    float: none;
+    display: inline-block;
+  }
+
+  .btn-filter {
+    display: none;
+  }
+}

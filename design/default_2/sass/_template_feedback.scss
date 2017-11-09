@@ -1,0 +1,131 @@
+.feedback  {
+  padding-top: 50px;
+}
+
+.feedback__map {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+}
+
+.feedback__address{
+  position: relative;
+  z-index: 2;
+	float: none;
+  margin-bottom: 20px;
+  padding: 2rem;
+  background-color: #fff;
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.25);
+  border-top: 2px solid #12a4dd;
+
+  h1 {
+  	position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    line-height: 1;
+    text-align: center;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      width: 8rem;
+      height: 0.2rem;
+      margin-left: -4rem;
+      background-color: $active-color;
+    }
+  }
+
+  p {
+  	margin-bottom: 10px;
+  	font-family: "Rubik",sans-serif;
+  	color: #23292f;
+  }
+}
+
+.feedback__form {
+	position: relative;
+	z-index: 2;
+	float: none;
+	padding: 2rem;
+	background-color: #fff;
+  border-top: 2px solid #12a4dd;
+	box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.25);
+
+	textarea {
+		min-height: 100px;
+	}
+  
+  .captcha__img {
+  	float: left;
+  	margin-right: 1.5rem;
+		margin-bottom: 0;
+	}
+	.captcha__input {
+		float: left;
+		width: 120px;
+	}
+
+	.btn {
+		margin-top: 35px;
+		padding: 0.5rem 3rem;
+    width: 100%;
+	}
+}
+
+.feedback__form-ledend {
+	position: relative;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  font-size: 24px;
+  line-height: 1;
+  text-align: center;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      width: 8rem;
+      height: 0.2rem;
+      margin-left: -4rem;
+      background-color: $active-color;
+    }
+}
+
+.feedback #comment_captcha-error {
+  top: 65px;
+}
+
+.feedback__message {
+  display: block;
+  margin-top: 0;
+  top: 50px;
+
+}
+
+@media (min-width: 768px) {
+  
+}
+
+@media (min-width: 1024px) {
+  .feedback__address {
+  	margin-bottom: 45px;
+
+  	p {
+  		font-size: 18px;
+  	}
+  }
+
+  .feedback #comment_captcha-error {
+    top: 70px;
+  }
+
+  .feedback #textarea-error {
+    margin-top: -25px;
+  }
+}

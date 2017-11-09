@@ -1,0 +1,52 @@
+.register{
+  padding: 20px 0;
+}
+
+.register__col {
+	position: relative;
+  padding: 30px;
+  border-top: 2px solid #12a4dd;
+  background-color: #fff;
+}
+
+.register__title {
+	margin-bottom: 15px;
+	font-family: "Rubik",sans-serif;
+	font-size: 24px;
+	line-height: 24px;
+	font-weight: 300;
+	color: #23292f;
+}
+
+.register__text {
+	display: block;
+	padding: 20px 0;
+	font-weight: 700;
+	color: #23292f;
+	border-bottom: 1px solid #ebebeb;
+}
+
+.register__link {
+	color: $active-color;
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+.register__form {
+	padding-top: 15px;
+}
+
+@media (min-width: 768px) {
+
+}
+
+
+@media (min-width: 1024px) {
+
+  .register__title  {
+	  font-size: 32px;
+	  line-height: 32px;
+  }
+
+}

@@ -1,0 +1,182 @@
+.filter {
+  position: relative;
+}
+
+.filter-sidebar__btn-open {
+  width: 100%;
+}
+
+.filter-sidebar {
+  display: block;
+  position: absolute;
+  z-index: 10;
+  left: -320px;
+  top: 0;
+  background-color: #fff;
+  width:320px;
+  height: 100vh;
+  overflow-y: scroll;
+  color:#337ab7;
+  transition: 0.3s cubic-bezier(0.55,0,0.1,1);
+  text-align: left;
+  border-top: 1px solid #f5f5f5;
+  border-bottom: 1px solid #f5f5f5;
+
+  &.is-active {
+    left: 0;
+  }
+}
+
+.filter-sidebar__btn-close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+.filter-brands {
+  margin-bottom: 25px;
+}
+
+.filter-title {
+  margin-bottom: 15px;
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 40px;
+  color: #424242;
+  text-transform: uppercase;
+}
+
+.filter-brands__item {
+  position: relative;
+  margin-bottom: 15px;
+  font-size: 20px;
+  padding-left: 32px;
+  display: block;
+  color:#838383;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.filter-brands__item:hover {
+  color: $active-color;
+}
+
+.filter-brands__item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 22px;
+  
+}
+
+.filter-brands__item.selected {
+  color: $active-color;
+}
+
+.filter-brands__item.selected::before {
+  background: url("../images/icons/ic_check.svg") no-repeat center;
+  background-size: 18px 16px;
+}
+
+
+.features-title {
+  margin-bottom: 14px;
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 40px;
+  color: #424242;
+  text-transform: uppercase;
+}
+
+.features__item {
+  margin-bottom: 30px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #838383;
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+}
+
+.features__values {
+  
+}
+
+.features__values-link {
+  position: relative;
+  display: block;
+  margin-bottom: 24px;
+  padding-left: 36px;
+  font-size: 18px;
+  line-height: 20px;
+  color: #838383;
+}
+
+.features__values-link:last-child {
+  margin-bottom: 0;
+}
+
+.features__values-link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 4px;
+  width: 26px;
+  height: 12px;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  transition: 0.3s ease;
+}
+
+.features__values-link::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 6px;
+  width: 8px;
+  height: 8px;
+  background-color: #eeeeee;
+  border-radius: 50%;
+}
+
+.features__values-link.selected::before {
+  border-color: $active-color;
+}
+
+.features__values-link.selected::after{
+  background-color: $active-color;
+  left: 15px;
+}
+
+@media (min-width: 768px) {
+  .filter-sidebar__btn-open {
+    display: none;
+  }
+
+  .filter-sidebar {
+    position: static;
+    width: 33.33333333%;
+    height: auto;
+    background-color: #f5f5f5;
+    overflow-y: auto;
+  }
+
+  .filter-sidebar__btn-close {
+    display: none;
+  }
+
+  .filter-brands {
+    margin-bottom: 55px;
+  }
+}
+
+
+@media (min-width: 1024px) {
+  .filter-sidebar {
+    width: 25%;
+  }
+}

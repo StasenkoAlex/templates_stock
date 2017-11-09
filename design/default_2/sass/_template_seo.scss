@@ -1,0 +1,40 @@
+.seo {
+  padding-top: 20px;
+	padding-bottom: 20px;
+  background-color: #F5F5F5;
+}
+
+.seo__title {
+	font-size: 20px;
+  line-height: 30px;
+  font-family: "Rubik", sans-serif;
+  color: #000;
+  text-transform: none;
+  font-weight: 300;
+  margin-bottom: 9px;
+  color: #23292f;
+}
+
+@media (min-width: 768px) {
+
+	.seo {
+		padding: 30px 0;
+	}
+
+  .seo__title {
+    font-size: 24px;
+    line-height: 30px;
+    text-transform: uppercase;
+  }
+}
+
+@media (min-width: 1024px) {
+  .seo {
+    padding: 40px 0;
+  }
+
+  p {
+    font-size: 16px;
+  }
+}
+

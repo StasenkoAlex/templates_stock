@@ -1,0 +1,282 @@
+.catalog {
+  padding: 5px 0;
+  background-color: #fff;
+}
+
+.catalog__btn {
+  padding: 12px 14px;
+	width: 100%;
+  font-size: 20px;
+	background-color: #ffffff;
+  color: $active-color;
+  text-align: left;
+
+  &--desktop {
+    display: none;
+  }
+}
+
+.catalog__btn.is-active {
+	width: 55px;
+	height: 55px;
+	background-color: #fafafa;
+	text-align: center;
+}
+
+.catalog__list--lvl1 {
+  margin-bottom: 8px;
+  display: block;
+  font-size: 16px;
+  line-height: 32px;
+}
+
+
+
+.catalog__item-name--lvl1 {
+  display: block;
+  width: 100%;
+  margin-bottom: 4px;
+  color: #707070;
+
+  &.is-active {
+    color: #fff;
+    background-color: $active-color;
+  }
+}
+
+.catalog__item-link {
+  display: block;
+  padding: 5px 14px;
+  line-height: 20px;
+  text-transform: uppercase;
+
+  &--lvl1 {}
+  &--lvl2 {
+    padding-right: 10px;
+  }
+
+  &--lvl3 {
+    text-transform: none;
+  }
+}
+
+.catalog__item-trigger {
+  margin-left: auto;
+  width: 35px;
+  min-width: 35px;
+  height: 30px;
+  text-align: center;
+
+  &--lvl1 {
+    display: none;
+  }
+}
+
+
+.catalog__item-lvl2 {
+  margin-bottom: 10px;
+}
+
+
+.catalog__list--lvl2 {
+  margin-bottom: 5px;
+  display: block;
+  padding-left: 30px;
+  padding-right: 20px;
+
+  &.is-active {
+    display: block;
+  }
+}
+
+.catalog__item-name--lvl2 {
+  display: flex;
+  align-items: center;
+  color: $active-color;
+  text-transform: uppercase;
+}
+
+.catalog__item-link--lvl2 {
+    
+}
+
+
+.catalog__list--lvl3 {
+  display: none;
+  margin-bottom: 10px;
+  color: #000;
+
+  &.is-active {
+    display:block;
+  }
+}
+
+
+@media (min-width: 1024px) {
+  .catalog {
+    padding: 0;
+    width: 100%;
+  	position: absolute;
+    z-index: 100;
+  	top: 100%;
+  	left: 0;
+  }
+
+
+  .catalog__btn {
+    width: 55px;
+    height: 55px;
+    background-color: #ffffff;
+    text-align: center;
+
+    &--mobi {
+      display: none;
+    }
+
+    &--desktop {
+     display: block;
+     position: absolute;
+     top: -90px;
+     left: 26%;
+    }
+  }
+
+  .catalog__list--lvl1 {
+    margin-bottom: 0;
+    position: absolute;
+    left: 0;
+    top: 22px;
+    padding: 16px 0;
+    width: 30vw;
+    background-color: #fafafa;
+    opacity: 0;
+    transition: all 0.7s ease 0.2s;
+    visibility: hidden;
+    //max-height: 100vh;
+    //overflow-y: scroll;
+
+    &.is-active {
+      top: 0;
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  .catalog__item-name--lvl1 {
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    overflow: hidden;
+
+    &.is-active,
+    &:hover {
+      background-color: #F5F5F5;
+    }
+  }
+
+  .catalog__item-link--lvl1 {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #23292f;
+    text-transform: none;
+    position: relative;
+
+     &::after {
+      position: absolute;
+      content: "";
+      left: -30px;
+      top: -100%;
+      bottom: 0;
+      width: 3px;
+      height: 100%;
+      background-color: $active-color;
+      transition: 0.35s all ease;
+    }
+  }
+
+  .catalog__item-name--lvl1:hover .catalog__item-link--lvl1::after {
+    top: 0;
+  }
+
+  .catalog__item-trigger--lvl1 {
+    width: 40px;
+    display: block;
+    margin-left: auto;
+    text-align: right;
+    cursor: pointer;
+  }
+
+  .catalog__list--lvl2 {
+    margin-bottom: 0;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 30vw;
+    padding: 35px;
+    width: 66.66vw;
+    min-height: 300px;
+    max-height: 600px;
+    overflow-y: auto;
+    background-color: #f5f5f5;
+  }
+
+  .catalog__item--lvl1:hover > .catalog__list--lvl2 {
+    display: block;
+  }
+
+  .catalog__item--lvl2 {
+    margin-bottom: 15px;
+    display: inline-block;
+    vertical-align: top;
+    width: 32%;
+  }
+
+  .catalog__item-link--lvl2 {
+    font-size: 18px;
+    color: #23292f;
+    text-transform: none;
+    transition: 0.3s all ease;
+
+    &:hover {
+      color: $active-color;
+    }
+  }
+
+  .catalog__item-trigger--lvl2 {
+    display: none;
+  }
+
+  .catalog__list--lvl3 {
+    display: block;
+  }
+
+  .catalog__item-link--lvl3 {
+    font-size: 14px;
+    color: #757575;
+    text-transform: none;
+    transition: 0.3s all ease;
+
+    &:hover {
+      color: $active-color;
+    }
+  }
+
+}
+
+@media (min-width: 1366px) {
+
+  .catalog__list--lvl1 {
+    width: 28vw;
+    left: 2vw;
+  }
+
+  .catalog__list--lvl2 {
+    width: 60vw;
+    left: 28vw;
+  }
+
+
+}

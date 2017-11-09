@@ -1,0 +1,161 @@
+.tiny-product {
+  margin-bottom: 12px;
+}
+
+.tiny-product__inner {
+  position: relative;
+  margin:  0 auto;
+  padding: 1rem 0;
+  height: 100%;
+  background-color: #ffffff;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.tiny-product__row { 
+  margin-right: auto;
+}
+
+.tiny-product__label {
+  position: absolute;
+  z-index: 2;
+  top: 15px;
+  left: 20px;
+  width: 45px;
+  height: 20px;
+  font-size: 10px;
+  line-height: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: #f25252;
+  color: #fff;
+  text-align: center;
+}
+
+
+.tiny-product__image {
+  display: block;
+  height: 200px;
+  line-height: 200px;
+  background-color: transparent;
+  text-align: center;
+
+  img {
+    margin: 0 auto;
+  }
+}
+
+.tiny-product__info {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+}
+
+.tiny-product__name {
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 600;
+  color: #222;
+}
+
+.tiny-product__name:hover {
+  color: $active-color;
+}
+
+.tiny-product__cart {
+  
+}
+
+
+.tiny-product__price {
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #727782;
+}
+
+.tiny-product__price .compare-price {
+  display: block;
+  color: #a8aebb;
+  text-decoration: line-through;
+}
+
+.tiny-product__price .price { 
+  display: block;
+}
+
+.tiny-product__btn {
+  width: 100%;
+  span {
+    margin-left: 10px;
+  }
+}
+
+@media (min-width: 768px) {
+  
+  .tiny-product {
+    margin-bottom: 25px;
+  }
+
+  .tiny-product__inner {
+    padding: 20px 10px;
+    min-width: auto;
+    height: 100%;
+
+    &:hover {
+      box-shadow: 0 15px 20px 0 rgba(0,0,0,.15);
+    }
+  }
+
+  .tiny-product__row {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .tiny-product__image {
+    min-height: 200px;
+  }
+
+  .tiny-product__info {
+    margin-top: 10px;
+    flex-grow: 1;
+    align-items: center;
+  }
+
+  .tiny-product__name {
+    font-size: 16px;
+  }
+
+ .tiny-product__cart {
+   margin-top: auto;
+   width: 100%;
+ }
+
+}
+
+
+@media (min-width: 1024px) {
+
+  .tiny-product__inner {
+    padding: 25px 15px;
+  }
+
+  .product-image {
+    margin-bottom: 10px;
+  }
+
+  .product-meta {
+    position: relative;
+  }
+
+  .tiny-product__btn {
+    width: 75%;
+  }
+
+}

@@ -1,0 +1,113 @@
+.user {
+	padding: 10px 15px;
+  color: #23292f;
+  background-color: #F5F5F5;
+  border-top: 1px solid #f0f0f0;
+}
+
+.user__name {
+	display: block;
+	font-family: "Rubik",sans-serif;
+	font-weight: 300;
+	color: #23292f;
+	font-size: 24px;
+	line-height: 32px;
+	text-align: center;
+	color: $active-color;
+}
+
+.user__form {
+	//margin-bottom: 25px;
+	//padding: 15px 0;
+}
+
+.user__btn-password {
+	margin-top: 20px;
+	margin-right: 9px;
+}
+
+.user__password {
+	margin-top: 25px;
+	margin-bottom: 0;
+}
+
+.user__btn-save {
+	margin-top: 20px;
+}
+
+.user__orders {
+	text-transform: uppercase;
+	color: #23292f;
+}
+
+.user__orders-title{
+  padding-bottom: 10px;
+  font-family: "Rubik",sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 22px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #23292f;
+  border-bottom: 1px solid #ceedfa;
+}
+
+.user__orders-tables {
+	width: 100%;
+}
+
+.user__orders-td {
+	width: 40%;
+	padding: 5px 10px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+
+	&--date {
+		width: 20%;
+		color: #23292f;
+    font-weight: bold;
+	}
+
+	a:hover {
+		color: $active-color;
+	}
+}
+
+
+@media (min-width: 768px) {
+
+	.user__orders-title {
+    font-size: 22px;
+    margin-bottom: 25px;
+	}
+
+	.user__form {
+	
+  }
+
+
+	.user__orders-tables {
+	
+  }
+
+	.user__btn-password {
+		margin-right: 20px;
+	}
+}
+
+@media (min-width: 1024px) {
+
+	.user__name {
+		font-size: 35px;
+	}
+
+	.user__orders-title {
+		margin-bottom: 35px;
+    font-size: 34px;
+    line-height: 45px;
+	}
+
+	.user__form {
+		//margin-bottom: 30px;
+	}
+}
