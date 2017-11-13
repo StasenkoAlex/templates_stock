@@ -232,8 +232,13 @@
   left: 5px;
 }
 
-.cart-table__checkbox-description {
+.cart__delivery-description {
   margin-left: 30px;
+  display: none;
+
+  &.is-active {
+    display: block;
+  }
 }
 
 .cart-table__textarea {
@@ -255,7 +260,7 @@
   display: block;
   width: 100%;
   font-size: 18px;
-  padding: 7px 0px;
+  padding-bottom: 7px;
   color: #333;
   border-bottom: 1px solid #e5e5e5
 }
@@ -409,6 +414,7 @@
 
   .cart-table__form {
     padding: 25px;
+    padding-bottom: 35px;
   }
  
   .cart__form .btn--send {

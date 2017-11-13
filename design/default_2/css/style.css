@@ -2676,8 +2676,11 @@ textarea.valid {
   top: 10px;
   left: 5px; }
 
-.cart-table__checkbox-description {
-  margin-left: 30px; }
+.cart__delivery-description {
+  margin-left: 30px;
+  display: none; }
+  .cart__delivery-description.is-active {
+    display: block; }
 
 .cart-table__textarea {
   min-height: 100px;
@@ -2699,7 +2702,7 @@ textarea.valid {
   display: block;
   width: 100%;
   font-size: 18px;
-  padding: 7px 0px;
+  padding-bottom: 7px;
   color: #333;
   border-bottom: 1px solid #e5e5e5; }
 
@@ -2795,7 +2798,8 @@ textarea.valid {
   .cart__total-price {
     width: 80%; }
   .cart-table__form {
-    padding: 25px; }
+    padding: 25px;
+    padding-bottom: 35px; }
   .cart__form .btn--send {
     margin-top: 25px; } }
 
@@ -2923,7 +2927,7 @@ textarea.valid {
     margin-top: 15px; }
 
 .order__paid-checkbox {
-  margin-top: 15px; }
+  margin-top: 10px; }
   .order__paid-checkbox:last-child {
     margin-top: 0; }
 
@@ -2975,7 +2979,10 @@ textarea.valid {
   left: 5px; }
 
 .order__paid-description {
+  display: none;
   margin-left: 30px; }
+  .order__paid-description.is-active {
+    display: block; }
 
 .order__paid-btn {
   margin-top: 15px;

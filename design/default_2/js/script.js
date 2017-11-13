@@ -370,19 +370,25 @@ $(document).ready(function(){
   /*/Смена выбора оплаты на странице корзины*/
 
   //КОРЗИНА 
-  var cartTrigger = $('.js-cart_trigger'),
-      cartList = cartTrigger.closest('.js-cart_list'),
-      cartContainer = cartList.find('.js-cart_container'),
-      cartContent = cartList.find('.js-cart_content');
-   
-  cartContent.hide();    
-  cartList.each(function() {
-    $(this).find(cartContainer).not('.hidden').first().find(cartContent).show().addClass('active');
+  
+      
+  $(".js-cart_list").each(function() {
+    var cartContainer = $(this).find('.js-cart_container');
+    cartContainer.not('.hidden').first().find('.js-cart_content').addClass('is-active');
   });
       
-  cartTrigger.click(function() {
-    $(this).closest(cartList).find(cartContent).hide();
-    $(this).siblings(cartContent).slideDown();
+  $(document).on('click', '.js-cart_trigger',function() {
+    var cartTrigger = $(this),
+      cartList = cartTrigger.closest('.js-cart_list'),
+      cartContainer = cartTrigger.closest('.js-cart_container'),
+      cartContent = cartContainer.find('.js-cart_content');
+    if(cartContent.hasClass('is-active')) {
+      return;
+    }
+    
+    cartContent.addClass('is-active');
+    cartContainer.siblings().find('.js-cart_content').removeClass('is-active');
+
   });
 
 

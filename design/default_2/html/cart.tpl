@@ -132,7 +132,7 @@
             {include file="svg.tpl" svgId="ic_arrow-down" width="9px" height="9px"}
           </label>
           {if $delivery->description}
-          <div class="cart-table__checkbox-description js-cart_content"> 
+          <div class="cart__delivery-description js-cart_content"> 
             {$delivery->description}
           </div>
           {/if}   

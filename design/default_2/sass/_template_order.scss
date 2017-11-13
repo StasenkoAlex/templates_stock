@@ -150,7 +150,7 @@
 }
 
 .order__paid-checkbox {
-  margin-top: 15px;
+  margin-top: 10px;
   &:last-child {
     margin-top: 0;
   }
@@ -211,7 +211,12 @@
 }
 
 .order__paid-description {
+  display: none;
   margin-left: 30px;
+
+  &.is-active {
+    display: block;
+  }
 }
 
 .order__paid-btn {
