@@ -289,6 +289,11 @@ $(document).ready(function(){
   });
 
   //ПРИМИНЕНИЕ КУПОНА В КОРЗИНЕ
+  $('.js-coupon_trigger').click( function(e) {
+    e.preventDefault();
+    $('.js-coupon_content').slideToggle();
+  });
+
   $("input[name='coupon_code']").keypress(function(event){
     if(event.keyCode == 13){
       $("input[name='name']").attr('data-format', '');
@@ -335,13 +340,51 @@ $(document).ready(function(){
     }
   });
 
-  //КОРЗИНА 
-  $('.js-cart_content').hide();
-  $('.js-cart_trigger').click(function(e) {
-    e.preventDefault();
-    $(this).toggleClass('is-active');
-    $(this).siblings('.js-cart_content').slideToggle();
+
+
+  //ЗАКАЗ НА ОДНОЙ СТРАНИЦЕ
+  /*Смена выбора оплаты на странице корзины*/
+  function updatePayment (ids) {
+    var payment = $('.js-payment'),
+      paymentInput = $('.js-payment-input'),
+      defaultPayment = $('.js-delivery-input').first().data('payments') || '',
+      firstActivePayment;
+    
+    ids = ids ? ids.split(',') : defaultPayment.split(',');
+    if (!ids[0]) {
+      return;
+    }
+    payment.addClass('hidden');
+    paymentInput.each(function () {
+      if ($.inArray($(this).val(), ids) !== -1) {
+        $(this).closest('.js-payment').removeClass('hidden');
+      }
+    });
+    firstActivePayment = payment.filter(':visible').first();
+    firstActivePayment.find('input').prop('checked', true);
+  }
+  updatePayment();
+  $('.js-delivery-input').change(function () {
+    updatePayment($(this).data('payments'));
   });
+  /*/Смена выбора оплаты на странице корзины*/
+
+  //КОРЗИНА 
+  var cartTrigger = $('.js-cart_trigger'),
+      cartList = cartTrigger.closest('.js-cart_list'),
+      cartContainer = cartList.find('.js-cart_container'),
+      cartContent = cartList.find('.js-cart_content');
+   
+  cartContent.hide();    
+  cartList.each(function() {
+    $(this).find(cartContainer).not('.hidden').first().find(cartContent).show().addClass('active');
+  });
+      
+  cartTrigger.click(function() {
+    $(this).closest(cartList).find(cartContent).hide();
+    $(this).siblings(cartContent).slideDown();
+  });
+
 
 });
 

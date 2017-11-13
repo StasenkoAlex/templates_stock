@@ -86,11 +86,11 @@
   	{if $coupon_request}
   	<div class="cart-table__coupon">
   		<p>Если у вас есть код купона на скидку выберите соотвествующий пункт ниже</p>
-  		<div class="cart-table__field cart-table__field--coupon"> <!-- js-cart_field -->
-  			<button class="cart-table__form-trigger js-cart_trigger">Использовать купон
+  		<div class="cart-table__coupon js-cart_container"> <!-- js-cart_field -->
+  			<button class="cart-table__form-trigger js-coupon_trigger">Использовать купон
   				{include file="svg.tpl" svgId="ic_arrow-down" width="9px" height="9px"}
   			</button>
-  			<div class="cart-table__form cart-table__form--coupon js-cart_content">
+  			<div class="cart-table__form cart-table__form--coupon js-coupon_content">
   				{if $coupon_error}
   				<div class="cart-table__message_error">
   					{if $coupon_error == 'invalid'}Купон недействителен{/if}
@@ -117,36 +117,55 @@
   	</div>
   	{/if}
     {/if}
-
+    
+  {*/*order-on-one-page*/*}
+  {if $deliveries}
     {* Доставка *}
-    {if $deliveries}
-    <div class="cart-table__field  js-cart_field">
-    	<button href="#" class="cart-table__form-trigger js-cart_trigger">Выберите способ доставки
-    		{include file="svg.tpl" svgId="ic_arrow-down" width="9px" height="9px"}
-    	</button>	
-    	<ul class="cart-table__form  cart__delivery-list js-cart_content">
-    		{foreach $deliveries as $delivery}
-    		<li class="cart__delivery-item">
-    			<div class="cart-table__checkbox">
-    				<input type="radio" name="delivery_id" value="{$delivery->id}" {if $delivery_id==$delivery->id}checked{elseif $delivery@first}checked{/if} id="deliveries_{$delivery->id}">
-    				<label for="deliveries_{$delivery->id}">
-    					{$delivery->name}
-    					{if $cart->total_price < $delivery->free_from && $delivery->price>0}
-    					({$delivery->price|convert}&nbsp;{$currency->sign})
-    					{elseif $cart->total_price >= $delivery->free_from}
-    					(бесплатно)
-    					{/if}
-    				</label>
-    			</div>
-    			<div class="cart-table__checkbox-description">
-    				{$delivery->description}
-    			</div>
-    		</li>
-    		{/foreach}
-    	</ul>
+    <div class="cart-table__form cart-table__form--delivery">
+      <legend class="order__paid__form-legend">Выберите способ  доставки</legend>
+      <ul class="cart__delivery-list js-cart_list">
+        {foreach $deliveries as $delivery}
+        <li class="cart__delivery-item cart-table__checkbox js-cart_container">
+          <input id="delivery-{$delivery->id}" class="hidden js-delivery-input" type="radio" name="delivery_id" value="{$delivery->id}" data-payments="{$delivery->payment_methods_ids}"{if $delivery@first} checked{/if} >
+          <label for="delivery-{$delivery->id}"  class="js-cart_trigger">
+            {$delivery->name}
+            {include file="svg.tpl" svgId="ic_arrow-down" width="9px" height="9px"}
+          </label>
+          {if $delivery->description}
+          <div class="cart-table__checkbox-description js-cart_content"> 
+            {$delivery->description}
+          </div>
+          {/if}   
+        </li>
+        {/foreach}
+      </ul>
+    </div>
+
+    {* Оплата *}
+    {if $payment_methods}
+    <div class="order__paid-form">
+      <legend class="order__paid__form-legend">Выберите способ оплаты</legend>
+      <ul class="order__paid-list js-cart_list">
+        {foreach $payment_methods as $payment}
+        <li class="order__paid-checkbox js-payment js-cart_container">             
+          <input id="payment-{$payment->id}" class="hidden js-payment-input" type="radio" name="payment_method_id" value="{$payment->id}" {if $payment@first} checked{/if}>
+          <label for="payment-{$payment->id}" class="order__paid-label js-cart_trigger">
+           {$payment->name}
+           {include file="svg.tpl" svgId="ic_arrow-down" width="9px" height="9px"}
+          </label>
+          {if $payment->description}
+          <div class="order__paid-description js-cart_content"> 
+            {$payment->description}
+          </div>
+          {/if}
+        </li>
+        {/foreach}
+      </ul>
     </div>
     {/if}
-
+  {/if}
+  {*/*order-on-one-page*/*}
+   
     <div class="cart-table__form cart-table__form--user">
       {if $error}
       <div class="message_error">
@@ -194,3 +213,4 @@
    <p class="cart__absent">В корзине нет товаров</p>
   {/if}
 </div>
+

@@ -43,6 +43,9 @@ class CartView extends View
     if(isset($_POST['checkout']))
     {
     	$order = new stdClass;
+        /*order-on-one-page*/
+        $order->payment_method_id=$this->request->post('payment_method_id', 'integer');	
+        /*/order-on-one-page*/
     	$order->delivery_id = $this->request->post('delivery_id', 'integer');
     	$order->name        = $this->request->post('name');
     	$order->email       = $this->request->post('email');
@@ -167,9 +170,24 @@ class CartView extends View
 	function fetch()
 	{  
 		// Способы доставки
-		$deliveries = $this->delivery->get_deliveries(array('enabled'=>1));
+		$deliveries = $this->delivery->get_deliveries(array('enabled'=>1));  
 		$this->design->assign('deliveries', $deliveries);
-		
+
+		/*order-on-one-page - доработанный вариант, позволяет выводить оплату отдельно от доставки*/
+    $payment_methods = $this->payment->get_payment_methods(array('enabled'=>1));
+      $this->design->assign('payment_methods', $payment_methods);
+      foreach($deliveries as $delivery) {
+      	$delivery->payment_methods = $this->payment->get_payment_methods(array('delivery_id'=>$delivery->id, 'enabled'=>1));
+      	$delivery->payment_methods_ids = '';
+      	foreach ($delivery->payment_methods as $d_p_m) {
+      		$delivery->payment_methods_ids .= $d_p_m->id . ',';
+      	}
+      	$len = strlen($delivery->payment_methods_ids);
+      	$delivery->payment_methods_ids = substr($delivery->payment_methods_ids, 0, $len - 1);
+      }
+      $this->design->assign('all_currencies', $this->money->get_currencies());
+      /*/order-on-one-page*/
+      
 		// Данные пользователя
 		if($this->user)
 		{

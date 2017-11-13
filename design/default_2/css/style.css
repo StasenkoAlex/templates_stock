@@ -2581,6 +2581,7 @@ textarea.valid {
 .cart-table__form-trigger {
   padding: 20px;
   width: 100%;
+  font-size: 18px;
   background: #fff;
   color: #23292f;
   border: 1px solid #ddd;
@@ -2592,13 +2593,15 @@ textarea.valid {
     color: #12a4dd; }
 
 .cart-table__form {
+  margin-top: 15px;
   padding: 20px 15px;
   background: #fff;
   color: #23292f;
   border: 1px solid #ddd;
   border-top: 2px solid #12a4dd; }
-  .cart-table__form--user {
-    margin-top: 15px; }
+  .cart-table__form--coupon {
+    display: none;
+    margin-top: 0; }
 
 .btn--coupon {
   width: 100%;
@@ -2631,9 +2634,10 @@ textarea.valid {
 
 .cart-table__checkbox label {
   position: relative;
-  padding: 5px 5px 5px 30px;
+  padding: 5px 5px 0 30px;
   display: block;
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: bold;
   line-height: 22px;
   background: #fff;
   text-align: left;
@@ -2663,6 +2667,9 @@ textarea.valid {
     -webkit-transition: 0.3s all ease;
     -o-transition: 0.3s all ease;
     transition: 0.3s all ease; }
+  .cart-table__checkbox label svg {
+    margin-top: 6px;
+    margin-left: 5px; }
 
 .cart-table__checkbox input[type="radio"]:checked + label::after {
   display: block;
@@ -2788,7 +2795,7 @@ textarea.valid {
   .cart__total-price {
     width: 80%; }
   .cart-table__form {
-    padding: 40px; }
+    padding: 25px; }
   .cart__form .btn--send {
     margin-top: 25px; } }
 
@@ -2958,6 +2965,9 @@ textarea.valid {
     -webkit-transition: 0.3s all ease;
     -o-transition: 0.3s all ease;
     transition: 0.3s all ease; }
+  .order__paid-label svg {
+    margin-top: 6px;
+    margin-left: 5px; }
 
 .order__paid-checkbox input[type="radio"]:checked + label::after {
   display: block;
@@ -3066,10 +3076,6 @@ textarea.valid {
     width: 35%; }
   .order__table-info .order__total-price-data {
     width: 65%; }
-  .order__paid-form {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto; }
   .order__payment-method {
     padding: 20px 0; }
   .order__paid-description {
@@ -3092,7 +3098,6 @@ textarea.valid {
   .order__total-price-data {
     padding: 8px 25px; }
   .order__paid-form {
-    margin-top: 35px;
     padding: 25px; }
   .order__paid-btn {
     margin-top: 30px; } }

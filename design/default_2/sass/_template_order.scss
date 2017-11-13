@@ -197,6 +197,11 @@
     border-radius: 50%;
     transition: 0.3s all ease
   }
+
+  svg {
+    margin-top: 6px;
+    margin-left: 5px;
+  }
 }
 
 .order__paid-checkbox input[type="radio"]:checked + label::after {
@@ -351,12 +356,6 @@
     width: 65%;
   }
 
-  .order__paid-form {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
   .order__payment-method {
     padding: 20px 0;
   }
@@ -397,7 +396,6 @@
   }
 
   .order__paid-form {
-    margin-top: 35px;
     padding: 25px;
   }
 

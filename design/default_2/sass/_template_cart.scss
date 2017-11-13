@@ -112,6 +112,7 @@
 .cart-table__form-trigger {
   padding: 20px;
   width: 100%;
+  font-size: 18px;
   background: #fff;
   color: #23292f;
   border: 1px solid #ddd;
@@ -128,14 +129,16 @@
 }
 
 .cart-table__form {
+  margin-top: 15px;
   padding: 20px 15px;
   background: #fff;
   color: #23292f;
   border: 1px solid #ddd;
   border-top: 2px solid #12a4dd;
 
-  &--user {
-    margin-top: 15px;
+  &--coupon {
+    display: none;
+    margin-top: 0;
   }
 }
 
@@ -181,15 +184,16 @@
 
 .cart-table__checkbox label {
   position: relative;
-  padding: 5px 5px 5px 30px;
-  display: block;
-  font-size: 12px;
-  line-height: 22px;
-  background: #fff;
-  text-align: left;
-  color: #23292f;
-  text-transform: uppercase;
-  cursor: pointer;
+    padding: 5px 5px 0 30px;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 22px;
+    background: #fff;
+    text-align: left;
+    color: #23292f;
+    text-transform: uppercase;
+    cursor: pointer;
 
   &::before {
     content: '';
@@ -214,6 +218,11 @@
     background-color: $active-color;
     border-radius: 50%;
     transition: 0.3s all ease
+  }
+
+  svg {
+    margin-top: 6px;
+    margin-left: 5px;
   }
 }
 
@@ -399,7 +408,7 @@
   }
 
   .cart-table__form {
-    padding: 40px;
+    padding: 25px;
   }
  
   .cart__form .btn--send {
