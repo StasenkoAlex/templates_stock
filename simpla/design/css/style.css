@@ -1466,3 +1466,32 @@ div.upload_image input{
 	width: 290px;
 	margin-top: 4px;
 }
+
+/* banners */
+.banners_links{
+	margin-bottom:20px;
+}
+.banners_links a{
+	display:inline-block;
+	margin-right:20px;
+	height:30px;
+	line-height:30px;
+	padding:0 17px;
+	border: 1px solid #C0C0C0;
+	color: #5E5E5E;
+	text-decoration:none;
+	background:#fff;
+	-moz-border-radius: 15px;
+	-khtml-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+	font-weight:bold;
+}
+.banners_links a.active{
+	background:#18A5FF;
+	color:#fff;
+}
+#move_to_banner{
+	display:none;
+}
+/*/ banners */

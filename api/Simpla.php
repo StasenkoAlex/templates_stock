@@ -37,6 +37,9 @@ class Simpla
 		'feedbacks'  => 'Feedbacks',
 		'notify'     => 'Notify',
 		'managers'   => 'Managers'
+		/* banners */
+		,'banners'	 => 'Banners'
+		/*/ banners */
 	);
 	
 	// Созданные объекты

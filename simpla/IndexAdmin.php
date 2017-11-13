@@ -50,6 +50,12 @@ class IndexAdmin extends Simpla
 		'ManagersAdmin'       => 'managers',
 		'ManagerAdmin'        => 'managers',
 		'LicenseAdmin'        => 'license'
+			/* banners */
+		,'BannersAdmin'		  => 'banners'
+		,'BannerAdmin'		  => 'banners'
+		,'BannersImagesAdmin' => 'banners'
+		,'BannersImageAdmin'  => 'banners'
+		/*/ banners */
 	);
 
 	// Конструктор

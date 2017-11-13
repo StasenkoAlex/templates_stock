@@ -2,7 +2,12 @@
 	<li><a href="index.php?module=ThemeAdmin">Тема</a></li>
 	<li><a href="index.php?module=TemplatesAdmin">Шаблоны</a></li>		
 	<li><a href="index.php?module=StylesAdmin">Стили</a></li>		
-	<li class="active"><a href="index.php?module=ImagesAdmin">Изображения</a></li>		
+	<li class="active"><a href="index.php?module=ImagesAdmin">Изображения</a></li>	
+	{* banners *}
+	{if in_array('banners', $manager->permissions)}
+	<li><a href="index.php?module=BannersImagesAdmin">Баннера</a></li>
+	{/if}
+	{*/ banners *}	
 {/capture}
 
 {$meta_title = "Изображения" scope=parent}

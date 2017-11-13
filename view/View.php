@@ -97,6 +97,9 @@ class View extends Simpla
 			$this->design->smarty->registerPlugin("function", "get_featured_products",		array($this, 'get_featured_products_plugin'));
 			$this->design->smarty->registerPlugin("function", "get_new_products",			array($this, 'get_new_products_plugin'));
 			$this->design->smarty->registerPlugin("function", "get_discounted_products",	array($this, 'get_discounted_products_plugin'));
+			/* banners */
+			$this->design->smarty->registerPlugin("function", "get_banner",               array($this, 'get_banner_plugin'));
+			/*/ banners */
 		}
 	}
 		
@@ -295,4 +298,24 @@ class View extends Simpla
 			
 		}
 	}
+
+	/* banners */
+	public function get_banner_plugin($params, &$smarty){
+		if(!isset($params['group']) || !is_int($params['group']))
+			return false;
+		
+		@$product = $this->design->smarty->getTemplateVars('product');
+		@$category = $this->design->smarty->getTemplateVars('category');
+		@$brand = $this->design->smarty->getTemplateVars('brand');
+		@$page = $this->design->smarty->getTemplateVars('page');
+		
+		$show_filter_array = array('products'=>$product->id,'categories'=>$category->id,'brands'=>$brand->id,'pages'=>$page->id);
+		$banner = $this->banners->get_banner(intval($params['group']), true, $show_filter_array);
+		if(!empty($banner)){
+			if($items = $this->banners->get_banners_images(array('banner_id'=>$banner->id, 'visible'=>1)))
+				$banner->items = $items;
+			$smarty->assign($params['var'], $banner);
+		}
+	}
+	/*/ banners */
 }

@@ -164,24 +164,6 @@ $(document).ready(function(){
 
   //Инциализация SLIDER SLICK 
 
-  $('.js-slick_banner').slick({
-    mobileFirst: true,
-    autoplay:false,
-    infinite: true,
-    arrows: false,
-    dots: true,
-    speed: 500,
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          arrows: true,
-          autoplaySpeed: 2000
-        }
-      }
-    ]
-  });
-
   $('.js-products-slider').slick({
     mobileFirst: true,
     slidesToShow: 1,

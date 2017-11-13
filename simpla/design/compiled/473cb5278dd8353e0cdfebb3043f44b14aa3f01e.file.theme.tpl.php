@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2017-11-10 10:17:46
+<?php /* Smarty version Smarty-3.1.18, created on 2017-11-13 15:08:55
          compiled from "simpla\design\html\theme.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:289625a05529a628200-23528581%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '473cb5278dd8353e0cdfebb3043f44b14aa3f01e' => 
     array (
       0 => 'simpla\\design\\html\\theme.tpl',
-      1 => 1492708202,
+      1 => 1510574733,
       2 => 'file',
     ),
   ),
@@ -15,8 +15,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_5a05529a73b1c1_51632413',
   'variables' => 
   array (
+    'manager' => 0,
     'theme' => 0,
     'settings' => 0,
     'message_error' => 0,
@@ -26,15 +29,18 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'root_dir' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5a05529a73b1c1_51632413',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5a05529a73b1c1_51632413')) {function content_5a05529a73b1c1_51632413($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_truncate')) include 'E:\\Work\\OSPanel\\domains\\test\\Smarty\\libs\\plugins\\modifier.truncate.php';
 ?><?php $_smarty_tpl->_capture_stack[0][] = array('tabs', null, null); ob_start(); ?>
 	<li class="active"><a href="index.php?module=ThemeAdmin">Тема</a></li>
 	<li><a href="index.php?module=TemplatesAdmin">Шаблоны</a></li>		
 	<li><a href="index.php?module=StylesAdmin">Стили</a></li>		
-	<li><a href="index.php?module=ImagesAdmin">Изображения</a></li>		
+	<li><a href="index.php?module=ImagesAdmin">Изображения</a></li>
+	
+	<?php if (in_array('banners',$_smarty_tpl->tpl_vars['manager']->value->permissions)) {?>
+	<li><a href="index.php?module=BannersImagesAdmin">Баннера</a></li>
+	<?php }?>
+		
 <?php list($_capture_buffer, $_capture_assign, $_capture_append) = array_pop($_smarty_tpl->_capture_stack[0]);
 if (!empty($_capture_buffer)) {
  if (isset($_capture_assign)) $_smarty_tpl->assign($_capture_assign, ob_get_contents());
