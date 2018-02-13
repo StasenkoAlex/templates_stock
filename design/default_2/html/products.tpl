@@ -18,54 +18,78 @@
     {include file="crumbles.tpl"}
   <!-- Хлебные крошки #End /-->
 
-
 	<div class="row js-switch-container products">
 		<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 filter-sidebar js-menu_sidebar js-switch-content" id="filter-sidebar">
       <button class="filter-sidebar__btn-close js-switch-close" type="button">
         {include file="svg.tpl" svgId="ic_close" fill="#12a4dd" width="12px" height="22px"}
       </button>
-			{* Фильтр по брендам *}
-      {if $category->brands}
-      <div class="filter-brands">
-        <h3 class="filter-title main-title">Бренды</h3>
-        <div class="filter-brands__list">
-      	  <a class="filter-brands__item {if !$brand->id}selected{/if}" href="catalog/{$category->url}" >Все бренды</a>
-      	  {foreach $category->brands as $b}
-          {if $b->image}
-      	  <a class="filter-brands__item" data-brand="{$b->id}" href="catalog/{$category->url}/{$b->url}"></a>
-      		{else}
-      	  <a class="filter-brands__item {if $b->id == $brand->id}selected{/if}" data-brand="{$b->id}" href="catalog/{$category->url}/{$b->url}">{$b->name|escape}</a>
-      	  {/if}
-      	  {/foreach}
-        </div>
-      </div>
-      {/if}
+       {* Фильтр по свойствам *}
+      {* MultiFilter  *}
+      {if $features || $category->brands || $prices_range || $features_variants}
+      <form method="get" class="features" id="features">
+        {if $prices_range}
+          <div class="features__item">
+            <div class="features-title main-title">Цена:</div>
+            <div class="features__values features__values--slider slider">
+              <span class="slider__amount" id="amount"></span>
+              <div id="slider" class="slider__container">
+                <div id="slider-range" class="slider__range"></div>
+              </div>
+              <input type="hidden" id="p_min" name="p[min]" value="{$prices_range->current->min}" data-min="{$prices_range->min}">
+              <input type="hidden" id="p_max" name="p[max]" value="{$prices_range->current->max}" data-max="{$prices_range->max}">
+            </div>
+          </div>
+        {/if}
 
-      {if $current_page_num==1}
-      {* Описание бренда *}
-      {$brand->description}
-      {/if}
-      
-      {* Фильтр по свойствам *}
-      {if $features}
-      <div class="features">
-      	{foreach $features as $key=>$f}
-      	<div class="features__item">
-      		<h3 class="features-title main-title" data-feature="{$f->id}">
-      		  {$f->name}
-      	  </h3>
-      	  <div class="features__values">
-      	  	<a class="features__values-link {if !$smarty.get.$key}selected{/if}"  href="{url params=[$f->id=>null, page=>null]}">Все</a>
-      	  	{foreach $f->options as $o}
-		        <a class="features__values-link {if $smarty.get.$key == $o->value}selected{/if}" href="{url params=[$f->id=>$o->value, page=>null]}">{$o->value|escape}</a>
-      	  	{/foreach}
-      	  </div>
-      	</div>
-      	{/foreach}
-      </div>
+          {if $category->brands|count>1}
+          <div class="filter-brands">
+            <div class="filter-title main-title">Бренды</div>
+            {foreach name=brands item=b from=$category->brands} 
+            <div class="filter-brands__list">
+              <input class="filter-brands__input" id="{$b->name|escape}" type="checkbox" name="b[]" value="{$b->id}" {if $smarty.get.b && $b->id|in_array:$smarty.get.b}checked{/if}>
+              <label class="filter-brands__link" for="{$b->name|escape}">&nbsp;{$b->name|escape}</label>
+            </div>
+            {/foreach}
+          </div>
+          {/if}
+
+          {if $features_variants|count > 2}
+          <div class="features__item">
+            <div class="features-title main-title">Варианты:</div>
+              {foreach $features_variants as $o}
+              <div class="features__list">
+                <input class="features__input" type="checkbox" id="{$o}" name="v[]" value="{$o}" {if $smarty.get.v && $o|in_array:$smarty.get.v}checked{/if}>
+                <label class="features__link" for="{$o}">
+                  {$o|default:"без названия"|escape}
+                </label>
+              </div>
+              {/foreach}
+          </div>
+          {/if}
+
+          {if $features}
+          {foreach $features as $f}
+          <div class="features__item">
+            <div class="features-title main-title" data-feature="{$f->id}">{$f->name}:</div>
+            {foreach $f->options as $o}
+            <div class="features__list">
+              <input class="features__input" type="checkbox" name="{$f->id}[]" id="{$o->value}" value="{$o->value}" {if $smarty.get.{$f@key} && $o->value|in_array:$smarty.get.{$f@key}}checked{/if}>
+              <label class="features__link" for="{$o->value}">&nbsp;{$o->value|escape}</label>
+            </div>
+            {/foreach}
+          </div>
+          {/foreach}
+          {/if}
+        </form>
+        <script>                
+          {literal}
+            $(function() {
+              
+            });
+          {/literal}
+        </script>
       {/if}
 		</div>
-
 		<div class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
 		{* Заголовок страницы *}
     {if $keyword}

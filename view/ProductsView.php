@@ -29,15 +29,30 @@ class ProductsView extends View
 		$filter = array();
 		$filter['visible'] = 1;	
 
+    /* MultiFilter  */
 		// Если задан бренд, выберем его из базы
-		if (!empty($brand_url))
-		{
-			$brand = $this->brands->get_brand((string)$brand_url);
-			if (empty($brand))
-				return false;
-			$this->design->assign('brand', $brand);
-			$filter['brand_id'] = $brand->id;
-		}
+    if ($val = $this->request->get('b'))
+      $filter['brand_id'] = $val;
+      elseif (!empty($brand_url)) {
+        $brand = $this->brands->get_brand((string) $brand_url);
+        if (empty($brand))
+          return false;
+        $this->design->assign('brand', $brand);
+        $filter['brand_id'] = $brand->id;
+      }
+		
+		$prices = array();
+        $prices['current'] = $this->request->get('p');
+        if (!empty($prices['current']['min']) && !empty($prices['current']['max']))
+            $filter['price'] = $prices['current'];
+        else
+            unset($prices['current']);
+        
+        // Если задан вариант
+		$variant = $this->request->get('v');
+		if (!empty($variant))
+			$filter['variant'] = $variant;
+    /*/ MultiFilter  */
 		
 		// Выберем текущую категорию
 		if (!empty($category_url))
@@ -73,8 +88,10 @@ class ProductsView extends View
 			foreach($this->features->get_features(array('category_id'=>$category->id, 'in_filter'=>1)) as $feature)
 			{ 
 				$features[$feature->id] = $feature;
-				if(($val = strval($this->request->get($feature->id)))!='')
+				/* MultiFilter  */
+				if($val = $this->request->get($feature->id))
 					$filter['features'][$feature->id] = $val;	
+				/*/ MultiFilter  */
 			}
 			
 			$options_filter['visible'] = 1;
@@ -161,6 +178,40 @@ class ProductsView extends View
 				//$variant->price *= (100-$discount)/100;
 				$products[$variant->product_id]->variants[] = $variant;
 			}
+       
+      /* MultiFilter  */
+			if(!empty($category) || !empty($brand)) {
+        $variant_products = array();
+        foreach($this->products->get_id_products($filter) as $p)
+        	$variant_products[$p->id] = $p;
+        $variant_products_ids = array_keys($variant_products);
+
+        $features_variants = array();
+        $temp_variants = $this->variants->get_value_variants(array('product_id'=>$variant_products_ids, 'in_stock'=>true));
+        foreach($temp_variants as &$variant)
+        	$features_variants[$variant->name] = $variant->name;  
+        asort($features_variants);
+        $this->design->assign('features_variants', $features_variants);
+
+        $variant_products = array();
+        unset($filter['price']);
+        $range_filter_id = $this->products->get_id_products($filter);
+        foreach($range_filter_id as $_range_filter_id)
+        	$range_filter['id'][] = $_range_filter_id->id;
+        $range_filter['limit'] = $this->products->count_products($range_filter);
+        foreach ($this->products->get_products($range_filter) as $p)
+        	$variant_products[$p->id] = $p;
+
+        $prices_range = $this->variants->prices_range(array('product_id' => array_keys($variant_products), 'instock' => true), 1);
+        if ($prices_range->max > $prices_range->min) {
+        	$prices_range->current->min = empty($prices['current']['min']) ? $prices_range->min : $prices['current']['min'];
+        	$prices_range->current->max = empty($prices['current']['max']) ? $prices_range->max : $prices['current']['max'];
+        	$this->design->assign('prices_range', $prices_range);
+        }
+      }
+      /*/ MultiFilter  */
+
+
 	
 			$images = $this->products->get_images(array('product_id'=>$products_ids));
 			foreach($images as $image)

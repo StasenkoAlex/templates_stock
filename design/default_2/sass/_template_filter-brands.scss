@@ -46,24 +46,30 @@
   text-transform: uppercase;
 }
 
-.filter-brands__item {
-  position: relative;
+.filter-brands__list {
   margin-bottom: 15px;
-  font-size: 20px;
-  padding-left: 32px;
-  display: block;
-  color:#838383;
-
   &:last-child {
     margin-bottom: 0;
   }
 }
 
-.filter-brands__item:hover {
+.filter-brands__input {display: none;}
+
+.filter-brands__link {
+  position: relative;
+  margin-bottom: 0;
+  font-size: 20px;
+  line-height: 22px;
+  padding-left: 32px;
+  display: block;
+  color:#838383;
+}
+
+.filter-brands__link:hover {
   color: $active-color;
 }
 
-.filter-brands__item::before {
+.filter-brands__link::before {
   content: '';
   position: absolute;
   left: 0;
@@ -73,11 +79,11 @@
   
 }
 
-.filter-brands__item.selected {
+.filter-brands__input:checked + .filter-brands__link {
   color: $active-color;
 }
 
-.filter-brands__item.selected::before {
+.filter-brands__input:checked + .filter-brands__link::before {
   background: url("../images/icons/ic_check.svg") no-repeat center;
   background-size: 18px 16px;
 }
@@ -102,25 +108,27 @@
   }
 }
 
-.features__values {
-  
+.features__list {
+  margin-bottom: 24px;
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 }
 
-.features__values-link {
+
+.features__input {display: none;}
+
+.features__link {
   position: relative;
+  margin-bottom: 0;
   display: block;
-  margin-bottom: 24px;
   padding-left: 36px;
   font-size: 18px;
   line-height: 20px;
   color: #838383;
 }
 
-.features__values-link:last-child {
-  margin-bottom: 0;
-}
-
-.features__values-link::before {
+.features__link::before {
   content: "";
   position: absolute;
   left: 0;
@@ -132,7 +140,7 @@
   transition: 0.3s ease;
 }
 
-.features__values-link::after {
+.features__link::after {
   content: "";
   position: absolute;
   left: 3px;
@@ -143,11 +151,11 @@
   border-radius: 50%;
 }
 
-.features__values-link.selected::before {
+.features__input:checked + .features__link::before {
   border-color: $active-color;
 }
 
-.features__values-link.selected::after{
+.features__input:checked + .features__link::after{
   background-color: $active-color;
   left: 15px;
 }

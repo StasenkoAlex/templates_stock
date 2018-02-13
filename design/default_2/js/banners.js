@@ -16,21 +16,90 @@ $(function(){
 	/* Ниже можно вставлять скрипты для ваших баннеров */
 	
 	$('.js-slick_banner').slick({
-    mobileFirst: true,
-    autoplay:false,
+    autoplay: false,
     infinite: true,
     arrows: false,
     dots: true,
-    speed: 500,
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          arrows: true,
-          autoplaySpeed: 2000
-        }
-      }
-    ]
+    speed: 500
   });
+
+
+  /* Слайдер на странице trade-in */
+	if($('#js-tn_slider').length) {
+		$('#js-tn_slider').slick({
+			dots: true,
+			arrows: false,
+			slidesToShow: 1,
+			speed: 300
+		});
+	}
+	/* /Слайдер на странице trade-in */
+	
+	/* Слайдер фото в товаре */
+	if($('#product_slider').length) {
+		$('#product_slider').slick({
+			dots: true,
+			arrows: false,
+			slidesToShow: 1,
+			lazyLoad: 'ondemand',
+			speed: 300
+		});
+	}
+	/* /Слайдер фото в товаре */
+	
+	/* Карусель товаров */
+	if($('.js-carousel').length) {
+		var carousel = $('.js-carousel').slick({
+			speed: 500,
+			slidesToShow: 2,
+			slidesToScroll: 2,
+			dots: true,
+			mobileFirst: true,
+			responsive: [{
+				breakpoint: 767,
+				settings: {
+					slidesToShow: 3,
+					slidesToScroll: 3
+				}
+			},{
+				breakpoint: 1280,
+				settings: {
+					slidesToShow: 4,
+					slidesToScroll: 4
+				}
+			}]
+		});
+	}
+	/* /Карусель товаров */
+
+	/* Слайдер отзывов */
+	if($('.js-reviews').length) {
+		$('.js-reviews').slick({
+			dots: true,
+			arrows: true,
+			slidesToShow: 1,
+			lazyLoad: 'ondemand',
+			speed: 300
+		});
+	}
+	/* /Слайдер отзывов */
+
+	
+ //Cлайдера на странице продукта
+  $('.js-slider-for').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+    dots: true,
+    fade: true,
+    asNavFor: '.js-slider-nav'
+  });
+  $('.js-slider-nav').slick({
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    asNavFor: '.js-slider-for',
+    focusOnSelect: true
+  });
+
   
 });

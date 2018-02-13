@@ -102,5 +102,60 @@ class Variants extends Simpla
 			@unlink($this->config->root_dir.'/'.$this->config->downloads_dir.$filename);
 		$this->update_variant($id, array('attachment'=>null));
 	}
-	
+
+	public function get_value_variants($filter = array(), $field = 'name')
+  {   	 
+    $product_id_filter = '';
+    $instock_filter = '';
+
+    if(!empty($filter['product_id']))
+    	$product_id_filter = $this->db->placehold('AND v.product_id in(?@)', (array)$filter['product_id']);
+
+    if(!empty($filter['in_stock']) && $filter['in_stock'])
+    	$instock_filter = $this->db->placehold('AND (v.stock>0 OR v.stock IS NULL)');
+
+    if(!$product_id_filter)
+    	return array();
+
+    $query = $this->db->placehold("SELECT v.$field 
+    	FROM __variants AS v
+    	WHERE
+    	1
+    	$product_id_filter             	 
+    	$instock_filter
+    	GROUP BY v.$field");
+
+    $this->db->query($query);    
+    return $this->db->results();
+  }
+
+  /* MultiFilter */
+
+  public function prices_range($filter = array())
+  {   	 
+    $product_id_filter = '';
+    $instock_filter = '';
+
+    if(!empty($filter['product_id']))
+    	$product_id_filter = $this->db->placehold('AND v.product_id in(?@)', (array)$filter['product_id']);
+    if(!empty($filter['in_stock']) && $filter['in_stock'])
+    	$instock_filter = $this->db->placehold('AND (v.stock>0 OR v.stock IS NULL)');
+    if(!$product_id_filter)
+    	return array();
+
+    $query = $this->db->placehold("SELECT /*min(v.price) as min, max(v.price) as max*/
+    	MIN(v.price) as min, 
+    	MAX(v.price) as max
+    	FROM __variants AS v
+    	WHERE
+    	1
+    	$product_id_filter             	 
+    	$instock_filter           	 
+    	");
+
+    $this->db->query($query);      
+    return $this->db->result();
+  } 
+
+  /*/ MultiFilter  */
 }

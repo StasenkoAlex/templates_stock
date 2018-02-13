@@ -171,7 +171,9 @@ class Features extends Simpla
 		if(isset($filter['features']))
 			foreach($filter['features'] as $feature=>$value)
 			{
-				$features_filter .= $this->db->placehold('AND (po.feature_id=? OR po.product_id in (SELECT product_id FROM __options WHERE feature_id=? AND value=? )) ', $feature, $feature, $value);
+				/* MultiFilter  */
+				$features_filter .= $this->db->placehold('AND (po.feature_id=? OR po.product_id in (SELECT product_id FROM __options WHERE feature_id=?  AND value in(?@) )) ', $feature, $feature, (array)$value);
+				/*/ MultiFilter  */
 			}
 		
 

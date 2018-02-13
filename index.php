@@ -8,7 +8,7 @@
  * @author 		Denis Pikusov
  *
  */
-
+ini_set("display_errors",0);
 // Засекаем время
 $time_start = microtime(true);
 

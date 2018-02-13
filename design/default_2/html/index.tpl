@@ -35,8 +35,12 @@
 	{* Ctrl-навигация на соседние товары *}
 	<script type="text/javascript" src="js/ctrlnavigate.js"></script>           
 	
-	{* Аяксовая корзина *}
+	{* Общий скрипт *}
 	<script src="design/{$settings->theme}/js/script.js"></script>
+	<script src="design/{$settings->theme}/js/jquery-ui-slider.min.js"></script>
+  <link href="design/{$settings->theme|escape}/css/jquery-ui-slider.min.css" rel="stylesheet" type="text/css" media="screen"/>
+
+
 	
 	{* js-проверка форм *}
 	<script src="design/{$settings->theme}/js/jquery.validate.js" type="text/javascript"></script>
@@ -195,97 +199,36 @@
 
 
   <!-- Баннеры - слайдер --> 
-  <div class="container-fluid">
-  	{* banners *}
-			{get_banner var=banner4 group=4}
-			{if $banner4->items}
-				<div class="banner js-slick_banner">
-					{foreach $banner4->items as $bi}
-						<div class="banner__list">
-							{if $bi->image}
-  		          <img src="{$config->banners_images_dir}{$bi->image}" alt="{$bi->alt}" title="{$bi->title}">
-							{/if}
-							{if $bi->description}
-							  <div class="banner__wrap">
-							  	<h2 class="banner__title">{$bi->title}</h2>
-							  	<p class="banner__text">{$bi->description}</p>
-							  	{if $bi->url}
-							  	<a class="btn banner__btn" href="{$bi->url}" target="_blank">
-      			        {include file="svg.tpl" svgId="ic_cart" width="20px" height="20px"}
-      			        <span>Купить</span>
-      		        </a>
-      		        {/if}
-							  </div>
-							{/if}
-							{if $bi->url}
-								</a>
-							{/if}
-						</div>
-					{/foreach}
-				</div>
-			{/if}
-		{*/ banners *}
-  <!-- 	<div class="banner js-slick_banner">
-    <div class="banner__list">
-  	  <picture>
-            <source srcset="design/{$settings->theme|escape}/images/slide-1.jpg" media="(min-width: 768px)">
-  	    <img src="design/{$settings->theme|escape}/images/slide-1-mobile.jpg" title="{$settings->site_name|escape}" alt="{$settings->site_name|escape}"/>
-  	  </picture>
-  	  <div class="banner__wrap">
-  		  <h2 class="banner__title">Samsung. Лучшее предложение.</h2>
-  		  <p class="banner__text">Galaxy S7 от Samsung поддерживает инновационные технологии, что делает его одним из лучших смартфонов 2016 года.</p>
-  		  <button class="btn banner__btn" type="submit" data-result-text="добавлено">
+  {* banners *}
+	{get_banner var=banner4 group=4}
+	{if $banner4->items}
+	<div class="container-fluid">
+		<div class="banner js-slick_banner">
+			{foreach $banner4->items as $bi}
+			<div class="banner__list">
+				{if $bi->image}
+  		    <img src="{$config->banners_images_dir}{$bi->image}" alt="{$bi->alt}" title="{$bi->title}">
+				{/if}
+				{if $bi->description}
+					<div class="banner__wrap">
+						<h2 class="banner__title">{$bi->title}</h2>
+						<p class="banner__text">{$bi->description}</p>
+						{if $bi->url}
+						<a class="btn banner__btn" href="{$bi->url}" target="_blank">
       			  {include file="svg.tpl" svgId="ic_cart" width="20px" height="20px"}
       			  <span>Купить</span>
-      		  </button>
-  	  </div>
-    </div>
-    <div class="banner__list">
-  	  <picture>
-            <source srcset="design/{$settings->theme|escape}/images/slide-2.jpg" media="(min-width: 768px)">
-  	    <img src="design/{$settings->theme|escape}/images/slide-2-mobile.jpg" title="{$settings->site_name|escape}" alt="{$settings->site_name|escape}"/>
-  	  </picture>
-  	  <div class="banner__wrap">
-  		  <h2 class="banner__title">Apple iPhone 7</h2>
-  		  <p class="banner__text">
-            Телефон оснащен 4,70-дюймовым сенсорным дисплеем с разрешением 750 пикселей на 1334 пикселя при PPI 326 пикселей на дюйм.</p>
-  		  <button class="btn banner__btn" type="submit" data-result-text="добавлено">
-      			  {include file="svg.tpl" svgId="ic_cart" width="20px" height="20px"}
-      			  <span>Купить</span>
-      		  </button>
-  	  </div>
-    </div>
-    <div class="banner__list">
-  	  <picture>
-            <source srcset="design/{$settings->theme|escape}/images/slide-3.jpg" media="(min-width: 768px)">
-  	    <img src="design/{$settings->theme|escape}/images/slide-3-mobile.jpg" title="{$settings->site_name|escape}" alt="{$settings->site_name|escape}"/>
-  	  </picture>
-  	  <div class="banner__wrap">
-  		  <h2 class="banner__title">XiaoMi Mi 5</h2>
-  		  <p class="banner__text">Snapdragon 820 / 3GB RAM / 32GB UFS 2.0 Flash 4-axis OIS кмера / 3D стекло</p>
-  		  <button class="btn banner__btn" type="submit" data-result-text="добавлено">
-      			   {include file="svg.tpl" svgId="ic_cart" width="20px" height="20px"}
-      			   <span>Купить</span>
-      		  </button>
-  	  </div>
-    </div>
-    <div class="banner__list">
-  	  <picture>
-            <source srcset="design/{$settings->theme|escape}/images/slide-4.jpg" media="(min-width: 768px)">
-  	    <img src="design/{$settings->theme|escape}/images/slide-4-mobile.jpg" title="{$settings->site_name|escape}" alt="{$settings->site_name|escape}"/>
-  	  </picture>
-  	  <div class="banner__wrap">
-  		  <h2 class="banner__title">Lenovo K5 Note 4G</h2>
-  		  <p class="banner__text">Этот телефон оснащен 5,5-дюймовым многоточечным емкостным сенсорным экраном с разрешением 1920 * 1080, двойной SIM-картой и двухрежимным дизайном.</p>
-  		  <button class="btn banner__btn" type="submit" data-result-text="добавлено">
-      			  {include file="svg.tpl" svgId="ic_cart" width="20px" height="20px"}
-      			  <span>Купить</span>
-      		  </button>
-  	  </div>
-    </div>
-      </div>
-    </div>
-    Баннеры - слайдер (The End) -->
+      		  </a>
+      	    {/if}
+					</div>
+				{/if}
+			</div>
+			{/foreach}
+		</div>
+	</div>
+	{/if}
+	{*/ banners *}
+
+  <!--Баннеры - слайдер (The End) -->
 
  
 	<!-- Вся страница --> 

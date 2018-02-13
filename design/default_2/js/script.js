@@ -52,7 +52,7 @@ $(document).ready(function(){
     }
     if( $(e.target).closest(modalNoticeClose).length || $(e.target).closest(modalNoticeContent).length === 0 ) {
       modalNotice.removeClass('is-active');
-      $body.removeClass('modal-notice-open');
+      $('body').removeClass('modal-notice-open');
     }
   });
   /*/Закрываем модальные уведомления*/
@@ -364,14 +364,52 @@ $(document).ready(function(){
       cartList = cartTrigger.closest('.js-cart_list'),
       cartContainer = cartTrigger.closest('.js-cart_container'),
       cartContent = cartContainer.find('.js-cart_content');
+
     if(cartContent.hasClass('is-active')) {
       return;
     }
-    
     cartContent.addClass('is-active');
     cartContainer.siblings().find('.js-cart_content').removeClass('is-active');
 
   });
+
+  //SLIDER диапазона цен для фильтра товаров
+  var min = $("#p_min").data('min'),
+      max = $("#p_max").data('max'),
+      current_min = $("#p_min").val(),
+      current_max = $("#p_max").val(),
+      currency = '<i class="slider__currency">Р</i>';
+
+      console.log(min);
+      console.log(max);
+      console.log(current_min);
+
+  $( "#slider-range" ).slider({
+    range: true,
+    min: min,
+    max: max,
+    values: [current_min, current_max],
+      slide: function( event, ui ) {
+        $( "#amount" ).html( ui.values[ 0 ] + " - " + ui.values[ 1 ] + " " + currency );
+        $( "#p_min" ).val( ui.values[ 0 ] );
+        $( "#p_max" ).val( ui.values[ 1 ] );
+      },
+      stop: function(event, ui) {
+        $( "input#p_min" ).val( ui.values[ 0 ] ).closest('form').submit();
+        $( "input#p_max" ).val( ui.values[ 1 ] ).closest('form').submit();
+      }
+  });
+
+  $( "#amount" ).html( $( "#slider-range" ).slider( "values", 0) + " - " + $( "#slider-range" ).slider( "values", 1) + " " + currency );
+  $( "#p_min" ).val($( "#slider-range" ).slider( "values", 0));
+  $( "#p_max" ).val($( "#slider-range" ).slider( "values", 1));
+
+  //Мультифильтр по свойствам, вариантам и цене
+
+  $('#features [type=checkbox]').live('change',function(){
+    $(this).closest('form').submit();
+  });
+
 
 
 });
