@@ -23,7 +23,7 @@
       <button class="filter-sidebar__btn-close js-switch-close" type="button">
         {include file="svg.tpl" svgId="ic_close" fill="#12a4dd" width="12px" height="22px"}
       </button>
-       {* Фильтр по свойствам *}
+      {* Фильтр по свойствам *}
       {* MultiFilter  *}
       {if $features || $category->brands || $prices_range || $features_variants}
       <form method="get" class="features" id="features">

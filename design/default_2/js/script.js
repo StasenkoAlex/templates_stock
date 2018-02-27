@@ -380,10 +380,6 @@ $(document).ready(function(){
       current_max = $("#p_max").val(),
       currency = '<i class="slider__currency">Р</i>';
 
-      console.log(min);
-      console.log(max);
-      console.log(current_min);
-
   $( "#slider-range" ).slider({
     range: true,
     min: min,

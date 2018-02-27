@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2017-11-13 15:08:55
+<?php /* Smarty version Smarty-3.1.18, created on 2018-02-19 15:05:34
          compiled from "simpla\design\html\theme.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:289625a05529a628200-23528581%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '473cb5278dd8353e0cdfebb3043f44b14aa3f01e' => 
     array (
       0 => 'simpla\\design\\html\\theme.tpl',
-      1 => 1510574733,
+      1 => 1518509525,
       2 => 'file',
     ),
   ),
