@@ -94,7 +94,11 @@
     						<span>Купить</span>
     					</button>
     					<button class="product__favorite-btn" type="button">
-    						{include file="svg.tpl" svgId="ic_favorite"}
+                {if $product->id|in_array:$wished_products}
+                  <a href="#" rel="{$product->id}" class="product__favorite-link is-selected js-wishlist">{include file="svg.tpl" svgId="ic_favorite"}</a>
+                {else}
+                   <a href="#" rel="{$product->id}" class="product__favorite-link js-wishlist">{include file="svg.tpl" svgId="ic_favorite"}</a>
+                {/if}
     					</button>
     				</div>
     			</form>

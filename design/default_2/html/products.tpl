@@ -30,13 +30,20 @@
         {if $prices_range}
           <div class="features__item">
             <div class="features-title main-title">Цена:</div>
-            <div class="features__values features__values--slider slider">
-              <span class="slider__amount" id="amount"></span>
+            <div class="features__values features__values--slider slider-price">
               <div id="slider" class="slider__container">
                 <div id="slider-range" class="slider__range"></div>
               </div>
-              <input type="hidden" id="p_min" name="p[min]" value="{$prices_range->current->min}" data-min="{$prices_range->min}">
-              <input type="hidden" id="p_max" name="p[max]" value="{$prices_range->current->max}" data-max="{$prices_range->max}">
+              <div class="clearfix slider-price__wrap row">
+                <div class="col-xs-6">
+                  <input  class="slider-price__input" id="p_min" name="p[min]" value="{$prices_range->current->min}" data-min="{$prices_range->min|intval}">
+                  <span class="slider-price__currency">{$currency->code}</span>
+                </div>
+                <div class="col-xs-6">
+                  <input  class="slider-price__input slider-price__input"  id="p_max" name="p[max]" value="{$prices_range->current->max}" data-max="{$prices_range->max|intval}">
+                  <span class="slider-price__currency">{$currency->code}</span>
+                </div>               
+              </div>
             </div>
           </div>
         {/if}

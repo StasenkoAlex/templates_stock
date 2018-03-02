@@ -1,44 +1,44 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2018-02-28 11:39:42
-         compiled from "simpla\design\html\templates.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:56275a098b5a9318e7-46309660%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.18, created on 2018-02-28 11:39:39
+         compiled from "simpla\design\html\styles.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:266425a966acb669e72-22676375%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    'ca61bb07856928e9ffdb4bf4dae192f45c2b5fda' => 
+    'acec80c7caeba0b1e8ba411487038025b6d9059c' => 
     array (
-      0 => 'simpla\\design\\html\\templates.tpl',
+      0 => 'simpla\\design\\html\\styles.tpl',
       1 => 1519729658,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '56275a098b5a9318e7-46309660',
+  'nocache_hash' => '266425a966acb669e72-22676375',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5a098b5a9dab11_66358180',
   'variables' => 
   array (
     'manager' => 0,
-    'template_file' => 0,
+    'style_file' => 0,
     'theme' => 0,
     'message_error' => 0,
-    'templates' => 0,
-    't' => 0,
-    'template_content' => 0,
+    'styles' => 0,
+    's' => 0,
+    'style_content' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_5a966acb6eaf91_04189734',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5a098b5a9dab11_66358180')) {function content_5a098b5a9dab11_66358180($_smarty_tpl) {?><?php $_smarty_tpl->_capture_stack[0][] = array('tabs', null, null); ob_start(); ?>
+<?php if ($_valid && !is_callable('content_5a966acb6eaf91_04189734')) {function content_5a966acb6eaf91_04189734($_smarty_tpl) {?><?php $_smarty_tpl->_capture_stack[0][] = array('tabs', null, null); ob_start(); ?>
 	<li><a href="index.php?module=ThemeAdmin">Тема</a></li>
-	<li class="active"><a href="index.php?module=TemplatesAdmin">Шаблоны</a></li>		
-	<li><a href="index.php?module=StylesAdmin">Стили</a></li>		
+	<li><a href="index.php?module=TemplatesAdmin">Шаблоны</a></li>		
+	<li class="active"><a href="index.php?module=StylesAdmin">Стили</a></li>		
 	<li><a href="index.php?module=ImagesAdmin">Изображения</a></li>
 	
 	<?php if (in_array('banners',$_smarty_tpl->tpl_vars['manager']->value->permissions)) {?>
 	<li><a href="index.php?module=BannersImagesAdmin">Баннера</a></li>
 	<?php }?>
-			
+		
 <?php list($_capture_buffer, $_capture_assign, $_capture_append) = array_pop($_smarty_tpl->_capture_stack[0]);
 if (!empty($_capture_buffer)) {
  if (isset($_capture_assign)) $_smarty_tpl->assign($_capture_assign, ob_get_contents());
@@ -46,8 +46,8 @@ if (!empty($_capture_buffer)) {
  Smarty::$_smarty_vars['capture'][$_capture_buffer]=ob_get_clean();
 } else $_smarty_tpl->capture_error();?>
 
-<?php if ($_smarty_tpl->tpl_vars['template_file']->value) {?>
-<?php $_smarty_tpl->tpl_vars['meta_title'] = new Smarty_variable("Шаблон ".((string)$_smarty_tpl->tpl_vars['template_file']->value), null, 1);
+<?php if ($_smarty_tpl->tpl_vars['style_file']->value) {?>
+<?php $_smarty_tpl->tpl_vars['meta_title'] = new Smarty_variable("Стиль ".((string)$_smarty_tpl->tpl_vars['style_file']->value), null, 1);
 if ($_smarty_tpl->parent != null) $_smarty_tpl->parent->tpl_vars['meta_title'] = clone $_smarty_tpl->tpl_vars['meta_title'];?>
 <?php }?>
 
@@ -55,13 +55,7 @@ if ($_smarty_tpl->parent != null) $_smarty_tpl->parent->tpl_vars['meta_title'] =
 <link rel="stylesheet" href="design/js/codemirror/lib/codemirror.css">
 <script src="design/js/codemirror/lib/codemirror.js"></script>
 
-<script src="design/js/codemirror/mode/smarty/smarty.js"></script>
-<script src="design/js/codemirror/mode/smartymixed/smartymixed.js"></script>
-<script src="design/js/codemirror/mode/xml/xml.js"></script>
-<script src="design/js/codemirror/mode/htmlmixed/htmlmixed.js"></script>
 <script src="design/js/codemirror/mode/css/css.js"></script>
-<script src="design/js/codemirror/mode/javascript/javascript.js"></script>
-
 <script src="design/js/codemirror/addon/selection/active-line.js"></script>
  
 
@@ -81,14 +75,6 @@ if ($_smarty_tpl->parent != null) $_smarty_tpl->parent->tpl_vars['meta_title'] =
 	overflow-y: hidden;
 	overflow-x: auto;
 }
-.cm-s-default .cm-smarty.cm-tag{color: #ff008a;}
-.cm-s-default .cm-smarty.cm-string {color: #007000;}
-.cm-s-default .cm-smarty.cm-variable {color: #ff008a;}
-.cm-s-default .cm-smarty.cm-variable-2 {color: #ff008a;}
-.cm-s-default .cm-smarty.cm-variable-3 {color: #ff008a;}
-.cm-s-default .cm-smarty.cm-property {color: #ff008a;}
-.cm-s-default .cm-comment {color: #505050;}
-.cm-s-default .cm-smarty.cm-attribute {color: #ff20Fa;}
 </style>
 
 <script>
@@ -101,9 +87,9 @@ $(function() {
 		
 		$.ajax({
 			type: 'POST',
-			url: 'ajax/save_template.php',
+			url: 'ajax/save_style.php',
 			data: {'content': content, 'theme':'<?php echo $_smarty_tpl->tpl_vars['theme']->value;?>
-', 'template': '<?php echo $_smarty_tpl->tpl_vars['template_file']->value;?>
+', 'style': '<?php echo $_smarty_tpl->tpl_vars['style_file']->value;?>
 ', 'session_id': '<?php echo $_SESSION['id'];?>
 '},
 			success: function(data){
@@ -138,14 +124,14 @@ $(function() {
 
 
 <h1>Тема <?php echo $_smarty_tpl->tpl_vars['theme']->value;?>
-, шаблон <?php echo $_smarty_tpl->tpl_vars['template_file']->value;?>
+, стиль <?php echo $_smarty_tpl->tpl_vars['style_file']->value;?>
 </h1>
 
 <?php if ($_smarty_tpl->tpl_vars['message_error']->value) {?>
 <!-- Системное сообщение -->
 <div class="message message_error">
 	<span class="text">
-	<?php if ($_smarty_tpl->tpl_vars['message_error']->value=='permissions') {?>Установите права на запись для файла <?php echo $_smarty_tpl->tpl_vars['template_file']->value;?>
+	<?php if ($_smarty_tpl->tpl_vars['message_error']->value=='permissions') {?>Установите права на запись для файла <?php echo $_smarty_tpl->tpl_vars['style_file']->value;?>
 
 	<?php } elseif ($_smarty_tpl->tpl_vars['message_error']->value=='theme_locked') {?>Текущая тема защищена от изменений. Создайте копию темы.
 	<?php } else { ?><?php echo $_smarty_tpl->tpl_vars['message_error']->value;?>
@@ -158,33 +144,35 @@ $(function() {
 <!-- Список файлов для выбора -->
 <div class="block layer">
 	<div class="templates_names">
-		<?php  $_smarty_tpl->tpl_vars['t'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['t']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['templates']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
-foreach ($_from as $_smarty_tpl->tpl_vars['t']->key => $_smarty_tpl->tpl_vars['t']->value) {
-$_smarty_tpl->tpl_vars['t']->_loop = true;
+		<?php  $_smarty_tpl->tpl_vars['s'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['s']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['styles']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['s']->key => $_smarty_tpl->tpl_vars['s']->value) {
+$_smarty_tpl->tpl_vars['s']->_loop = true;
 ?>
-			<a <?php if ($_smarty_tpl->tpl_vars['template_file']->value==$_smarty_tpl->tpl_vars['t']->value) {?>class="selected"<?php }?> href='index.php?module=TemplatesAdmin&file=<?php echo $_smarty_tpl->tpl_vars['t']->value;?>
-'><?php echo $_smarty_tpl->tpl_vars['t']->value;?>
+			<a <?php if ($_smarty_tpl->tpl_vars['style_file']->value==$_smarty_tpl->tpl_vars['s']->value) {?>class="selected"<?php }?> href='index.php?module=StylesAdmin&file=<?php echo $_smarty_tpl->tpl_vars['s']->value;?>
+'><?php echo $_smarty_tpl->tpl_vars['s']->value;?>
 </a>
 		<?php } ?>
 	</div>
 </div>
 
-<?php if ($_smarty_tpl->tpl_vars['template_file']->value) {?>
+<?php if ($_smarty_tpl->tpl_vars['style_file']->value) {?>
 <div class="block">
 <form>
-	<textarea id="template_content" name="template_content" style="width:700px;height:500px;"><?php echo htmlspecialchars($_smarty_tpl->tpl_vars['template_content']->value, ENT_QUOTES, 'UTF-8', true);?>
+	<textarea id="content" name="content" style="width:700px;height:500px;"><?php echo htmlspecialchars($_smarty_tpl->tpl_vars['style_content']->value, ENT_QUOTES, 'UTF-8', true);?>
 </textarea>
 </form>
 
 <input class="button_green button_save" type="button" name="save" value="Сохранить" />
-</div>
+<div class="block">
+
 
 
 
 <script>
-var editor = CodeMirror.fromTextArea(document.getElementById("template_content"), {
-		mode: "smartymixed",		
+
+var editor = CodeMirror.fromTextArea(document.getElementById("content"), {
+		mode: "css",		
 		lineNumbers: true,
 		styleActiveLine: true,
 		matchBrackets: false,

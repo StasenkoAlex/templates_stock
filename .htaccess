@@ -21,6 +21,12 @@ RewriteRule ^brands/([^/]+)/page_([^/]+)/?$	index.php?module=ProductsView&brand=
 RewriteRule ^search/([^/]+)/?$	index.php?module=ProductsView&keyword=$1 [L,QSA]
 RewriteRule ^search/?$	index.php?module=ProductsView [L,QSA]
 
+
+# Wishlist
+RewriteRule ^wishlist/?$    index.php?module=WishlistView [L,QSA]
+RewriteRule ^wishlist/([^/]+)/?$    index.php?module=WishlistView&id=$1 [L,QSA]
+RewriteRule ^wishlist/delete/([^/]+)/?$    index.php?module=WishlistView&id=$1&action=delete [L,QSA]
+
 # Блог
 RewriteRule ^blog/([^/]+)/?$	index.php?module=BlogView&url=$1 [L,QSA]
 RewriteRule ^blog/?$	index.php?module=BlogView [L,QSA]

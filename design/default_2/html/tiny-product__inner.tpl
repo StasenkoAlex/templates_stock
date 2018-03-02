@@ -2,6 +2,18 @@
 <div class="tiny-product__inner">
   <div class="tiny-product__row row">
     {if $product -> featured} <span class="tiny-product__label">hit</span> {/if}
+
+    <!-- Избранное -->
+    {if $product->id|in_array:$wished_products}
+    <a href="#" rel="{$product->id}" class="tiny-product__wishlist is-selected js-wishlist">
+       {include file="svg.tpl" svgId="ic_favorite"}
+    </a>
+   {else}
+    <a href="#" rel="{$product->id}" class="tiny-product__wishlist js-wishlist">
+      {include file="svg.tpl" svgId="ic_favorite"}
+    </a>
+    {/if}
+    <!-- Избранное (The End) -->
     <!-- Фото товара -->
     {if $product->image}
     <a class="tiny-product__image col-xs-6 col-sm-12" href="products/{$product->url}"><img src="{$product->image->filename|resize:200:200}" alt="{$product-name|escape}"/></a>

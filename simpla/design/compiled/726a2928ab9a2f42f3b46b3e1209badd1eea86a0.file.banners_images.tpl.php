@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2018-02-27 12:59:18
+<?php /* Smarty version Smarty-3.1.18, created on 2018-02-28 11:39:36
          compiled from "simpla\design\html\banners_images.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:300255a098b5bebe3e9-38743115%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '726a2928ab9a2f42f3b46b3e1209badd1eea86a0' => 
     array (
       0 => 'simpla\\design\\html\\banners_images.tpl',
-      1 => 1518509525,
+      1 => 1519729658,
       2 => 'file',
     ),
   ),

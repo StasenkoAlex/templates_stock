@@ -23,8 +23,9 @@
 	<link href="design/{$settings->theme|escape}/images/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
 	
 	{* JQuery *}
-	<script src="design/{$settings->theme}/js/jquery-3.2.1.min.js"  type="text/javascript"></script>
-	<script src="design/{$settings->theme}/js/jquery-migrate-1.4.1.min.js"  type="text/javascript"></script>
+	<script src="js/jquery/jquery.js"></script>
+	<script src="js/jquery/jquery-migrate-1.4.1.min.js"  type="text/javascript"></script>
+  <script src="js/jquery/jquery.mobile.custom.min.js"></script>
 	
 	{* Всплывающие подсказки для администратора *}
 	{if $smarty.session.admin == 'admin'}
@@ -36,11 +37,16 @@
 	<script type="text/javascript" src="js/ctrlnavigate.js"></script>           
 	
 	{* Общий скрипт *}
-	<script src="design/{$settings->theme}/js/script.js"></script>
+  <script src="design/{$settings->theme}/js/jquery-ui.min.js"></script>
 	<script src="design/{$settings->theme}/js/jquery-ui-slider.min.js"></script>
+	<script src="design/{$settings->theme}/js/slider-fix.js"></script>
+  <script src="design/{$settings->theme}/js/script.js"></script>
+
   <link href="design/{$settings->theme|escape}/css/jquery-ui-slider.min.css" rel="stylesheet" type="text/css" media="screen"/>
 
 
+  {* Избранное wishlist 28.02 *}
+  <script src="design/{$settings->theme}/js/ajax_wishlist.js"></script>
 	
 	{* js-проверка форм *}
 	<script src="design/{$settings->theme}/js/jquery.validate.js" type="text/javascript"></script>
@@ -159,8 +165,8 @@
 				<!-- Поиск (The End)-->
 			</div>
 			<div class="header__favorite-flex">
-				<button class="header__mobi-btn header__mobi-btn--favorite" type="button">
-					{include file="svg.tpl" svgId="ic_favorite"}
+				<button class="header__mobi-btn header__mobi-btn--favorite" type="button" id="wishlist">
+					{include file="wishlist_informer.tpl"}
 				</button>
 			</div>
 			<div id="cart_informer" class="header__cart-flex">
@@ -359,7 +365,7 @@
 			<div class="modal-block__footer">
 		    <a class="modal-block__submit btn" href="/cart">Оформить заказ</a>
 		    <span class="modal-block__continue js-modal-notice-close">Продолжить покупки</span>
-			</div
+			</div>
   	</div>
   </div>
 </body>

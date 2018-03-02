@@ -28,7 +28,7 @@ textarea:focus {
 }
 
 .quantity[type="text"] {
-  margin: 0 2%;
+  margin: 0 1%;
   width: 30%;
   text-align: center;
   padding: 8px;
@@ -110,8 +110,39 @@ textarea.valid {
 }
 
 
+.slider-price__wrap {
+  padding: 0 20px;
+}
+
+.slider-price__input {
+  float: left;
+  width: 86%;
+  padding: 5px 8px;
+  font-weight: bold;
+  color: #838383;
+  background-color: #eee;
+  border: 1px solid transparent;
+  &:focus {
+    border-color: $active-color;
+    background-color: #fff;
+  }
+}
+
+.slider-price__currency {
+  display: inline-block;
+  margin-left: 8px;
+  width: 100%;
+  color: $active-color;
+}
+
 @media (min-width: 768px) {
-  
+  .slider-price__input {
+    background-color: #fff;
+  }
+
+  .quantity[type="text"] {
+    margin: 0 2%;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -145,4 +176,11 @@ textarea.valid {
     position: absolute;
     top: 100px;
   }
+
+/*   .slider-price__currency {
+   display: inline-block;
+   width: auto;
+   margin-top: 6px;
+   margin-left: 5px;
+ }  */ 
 }

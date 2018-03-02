@@ -374,41 +374,36 @@ $(document).ready(function(){
   });
 
   //SLIDER диапазона цен для фильтра товаров
-  var min = $("#p_min").data('min'),
-      max = $("#p_max").data('max'),
-      current_min = $("#p_min").val(),
-      current_max = $("#p_max").val(),
-      currency = '<i class="slider__currency">Р</i>';
-
-  $( "#slider-range" ).slider({
-    range: true,
-    min: min,
-    max: max,
-    values: [current_min, current_max],
-      slide: function( event, ui ) {
-        $( "#amount" ).html( ui.values[ 0 ] + " - " + ui.values[ 1 ] + " " + currency );
-        $( "#p_min" ).val( ui.values[ 0 ] );
-        $( "#p_max" ).val( ui.values[ 1 ] );
-      },
-      stop: function(event, ui) {
-        $( "input#p_min" ).val( ui.values[ 0 ] ).closest('form').submit();
-        $( "input#p_max" ).val( ui.values[ 1 ] ).closest('form').submit();
-      }
-  });
-
-  $( "#amount" ).html( $( "#slider-range" ).slider( "values", 0) + " - " + $( "#slider-range" ).slider( "values", 1) + " " + currency );
-  $( "#p_min" ).val($( "#slider-range" ).slider( "values", 0));
-  $( "#p_max" ).val($( "#slider-range" ).slider( "values", 1));
-
-  //Мультифильтр по свойствам, вариантам и цене
+if( $("#slider-range").length ){
+    
+        var sliderRangeMin = $('#p_min').data('min'),
+            sliderRangeMax = $('#p_max').data('max'),
+            sliderCurrentMin = $('#p_min').val(),
+            sliderCurrentMax = $('#p_max').val();
+      
+        $( "#slider-range" ).slider({
+          range: true,
+          min: sliderRangeMin,
+          max: sliderRangeMax,
+          values: [sliderCurrentMin, sliderCurrentMax],
+          slide: function( event, ui ) {
+              $( "#p_min" ).val( ui.values[ 0 ] );
+              $( "#p_max" ).val( ui.values[ 1 ] );
+          },
+            stop: function( event, ui ) {
+                $('.features').submit();
+            }
+      });
+    }
 
   $('#features [type=checkbox]').live('change',function(){
     $(this).closest('form').submit();
   });
-
-
-
 });
+
+//Работа слайдера филтра-цены на мою версии
+  $('.ui-slider-handle').draggable();
+ 
 
 
 
