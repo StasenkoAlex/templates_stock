@@ -1,6 +1,7 @@
 ;<? exit(); ?>
 
-license = 89ddifebfd ongojhrnls opvmqwwo b76b58697e ggijehdlno nnkplootrv opx4ya832c bcagbfe9ce emhngpmkgl jlmonwrxty sb947ccfde eb8eghalfd gpkjirollp rtrqr7o3y9 bf9d6h8dba blafjfkkin nloqrtjsqr pavax5ve45 9gdebeddac bgghjnlomr lrpppsn3s3 rdya7c9d6h efgkffemel fjkm
+license = e8bcifkcci lfllmnlknp tstmutwo b7cc89febh fiekcfjhlg mpkppqqmqt twyaya7b7b aeeff9agii khgikmmhmq ltmsssoqqs zc7595ccbg gjcgedaggk gpkrkrllro ostun1u7u4 686a9badac hggfbhelhq jokonpqost q6w3r9v59b aebaae7kdm docidpkkln nuoxmxn5o8 p5xb592839 ch7f8jhihi lmmohukmqu r2qbpav8td 6f9g5e9g7k hobmgoeilq
+
 
 [database]
 
@@ -8,6 +9,7 @@ license = 89ddifebfd ongojhrnls opvmqwwo b76b58697e ggijehdlno nnkplootrv opx4ya
 db_server = "localhost"
 
 ;Пользователь базы данных
+
 db_user = "root"
 
 ;Пароль к базе
@@ -15,6 +17,7 @@ db_password = ""
 
 ;Имя базы
 db_name = "test"
+
 
 ;Префикс для таблиц
 db_prefix = s_;
@@ -62,10 +65,12 @@ resized_images_dir = files/products/;
 ;Изображения категорий
 categories_images_dir = files/categories/;
 
+
 /* banners */
 ;Изображения баннеров
 banners_images_dir = files/slides/;
 /*/ banners */
+
 
 ;Изображения брендов
 brands_images_dir = files/brands/;

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2017-12-13 13:08:06
+<?php /* Smarty version Smarty-3.1.18, created on 2018-04-29 20:36:39
          compiled from "simpla\design\html\license.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:59715a30fc06b242d7-12048383%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '4ec36af863397e2f6a4eea1c0f1d8e4dbe2fbefe' => 
     array (
       0 => 'simpla\\design\\html\\license.tpl',
-      1 => 1492708202,
+      1 => 1525016461,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_5a30fc072ec878_69975306',
   'variables' => 
   array (
     'license' => 0,
@@ -22,8 +24,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'config' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5a30fc072ec878_69975306',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5a30fc072ec878_69975306')) {function content_5a30fc072ec878_69975306($_smarty_tpl) {?><?php $_smarty_tpl->_capture_stack[0][] = array('tabs', null, null); ob_start(); ?>
 		<li class="active"><a href="index.php?module=LicenseAdmin">Лицензия</a></li>

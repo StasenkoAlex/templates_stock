@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2017-11-09 18:37:06
+<?php /* Smarty version Smarty-3.1.18, created on 2018-04-29 20:36:39
          compiled from "simpla\design\html\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:318775a047622305ae0-72576613%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f7a07d5d722e36f6c251f204c3c631bb4cfd9eae' => 
     array (
       0 => 'simpla\\design\\html\\index.tpl',
-      1 => 1493063538,
+      1 => 1525023390,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_5a0476224010d3_80849993',
   'variables' => 
   array (
     'meta_title' => 0,
@@ -28,8 +30,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'settings' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5a0476224010d3_80849993',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5a0476224010d3_80849993')) {function content_5a0476224010d3_80849993($_smarty_tpl) {?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
