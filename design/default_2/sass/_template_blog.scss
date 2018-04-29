@@ -19,8 +19,10 @@
   
 }
 
-.blog__item:not(:last-child) {
-  margin-bottom: 30px;
+.blog__item {
+  &:not(:last-child) {
+    margin-bottom: 30px;
+  }
 }
 
 .blog__item-title {
@@ -63,10 +65,12 @@
   margin: 10px 0;
   font-weight: 400;
   color: #23292f;
+  max-height: 250px;
+  overflow: hidden;
 }
 
 .blog__item-btn {
-  margin-top: 5px;
+  margin-top: auto;
 }
 
 
@@ -102,9 +106,5 @@
 
   .blog__item-annotation {
     margin: 20px 0;
-  }
-
-  .blog__item-btn {
-    margin-top: 10px;
   }
 }

@@ -16,6 +16,13 @@
       {include file="svg.tpl" svgId="ic_clock" width="16px" height="16px"}
       {$post->date|date}
     </span>
+    {*blog_image*}
+    {if $post->image}
+    <div class="post__item-img">
+      <img src="{$post->image|resize:200:200:false:$config->resized_blog_dir}" alt="" />
+    </div>
+    {/if}
+    {*/blog_image*}
     {if $comments}
       <span class="post__item-commetns">
         {include file="svg.tpl" svgId="ic_commetns" width="16px" height="16px"} ({$comments|count} {$comments|count|plural:'комментарий':'комментария'})

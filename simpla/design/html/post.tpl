@@ -18,6 +18,15 @@
 <script>
 $(function() {
 
+  /*blog_image*/
+    // Удаление изображений
+	$(".images a.delete").click( function() {
+		$("input[name='delete_image']").val('1');
+		$(this).closest("ul").fadeOut(200, function() { $(this).remove(); });
+		return false;
+	});
+  /*/blog_image*/
+
 	$('input[name="date"]').datepicker({
 		regional:'ru'
 	});
@@ -186,10 +195,24 @@ function translit(str)
 			
 	</div>
 	<!-- Левая колонка свойств товара (The End)--> 
-	
 	<!-- Правая колонка свойств товара -->	
 	<div id="column_right">
-		
+		{*blog_image*}
+		<div class="block layer images">
+			<h2>Изображение категории</h2>
+			<input class="upload_image" name="image" type="file"/>			
+			<input type="hidden" name="delete_image" value=""/>
+			{if $post->image}
+			<ul>
+				<li>
+					<a href="#" class="delete"><img src="design/images/cross-circle-frame.png"/></a>
+					<img src="{$post->image|resize:100:100:false:$config->resized_blog_dir}" alt="" />
+				{*	<img src="{$config->resized_blog_dir}/{$post->image|resize:100:100}" alt="" />*}
+				</li>
+			</ul>
+			{/if}
+		</div>
+        {*/blog_image*}
 	</div>
 	<!-- Правая колонка свойств товара (The End)--> 
 	

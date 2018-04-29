@@ -267,7 +267,8 @@ $(document).ready(function(){
       amountInput.val(Math.min(amountMax,(amountVal+1))).trigger('change');
     } else if($this.hasClass('js-counter_minus')) {
       amountInput.val(Math.max(1,(amountVal-1))).trigger('change');
-    }  
+    }
+    console.log(amountVal);
   });
 
   //ПРИМИНЕНИЕ КУПОНА В КОРЗИНЕ
