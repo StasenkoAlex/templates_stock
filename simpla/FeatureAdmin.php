@@ -14,19 +14,30 @@ class FeatureAdmin extends Simpla
 			$feature->in_filter = intval($this->request->post('in_filter'));
 			$feature_categories = $this->request->post('feature_categories');
 
-			if(empty($feature->id))
-			{
-  				$feature->id = $this->features->add_feature($feature);
-  				$feature = $this->features->get_feature($feature->id);
-				$this->design->assign('message_success', 'added');
-  			}
-			else
-			{
-				$this->features->update_feature($feature->id, $feature);
-				$feature = $this->features->get_feature($feature->id);
-				$this->design->assign('message_success', 'updated');
-			}
-			$this->features->update_feature_categories($feature->id, $feature_categories);
+            /* chpu_filter */
+            $feature->url = $this->request->post('url');
+            $feature->is_index = $this->request->post('is_index', 'boolean');
+            // Не допустить одинаковые URL свойств.
+            if(($c = $this->features->get_feature($feature->url)) && $c->id!=$feature->id)
+            {
+                $this->design->assign('message_error', 'Свойство с таким url уже существует');
+            }
+            else
+            {/* chpu_filter /*/
+                if(empty($feature->id))
+                {
+                    $feature->id = $this->features->add_feature($feature);
+                    $feature = $this->features->get_feature($feature->id);
+                    $this->design->assign('message_success', 'added');
+                }
+                else
+                {
+                    $this->features->update_feature($feature->id, $feature);
+                    $feature = $this->features->get_feature($feature->id);
+                    $this->design->assign('message_success', 'updated');
+                }
+                $this->features->update_feature_categories($feature->id, $feature_categories);
+			/* chpu_filter */}/* chpu_filter /*/
 		}
 		else
 		{

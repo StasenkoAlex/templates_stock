@@ -1,5 +1,0 @@
-AddType application/octet-stream csv
-AuthName "Simpla CMS"
-AuthType Basic
-AuthUserFile E:\Work\OSPanel\domains\test/simpla/.passwd
-require valid-user

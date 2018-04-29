@@ -1467,31 +1467,17 @@ div.upload_image input{
 	margin-top: 4px;
 }
 
-/* banners */
-.banners_links{
-	margin-bottom:20px;
-}
-.banners_links a{
+/* chpu_filter */
+a.is_index{
 	display:inline-block;
-	margin-right:20px;
-	height:30px;
-	line-height:30px;
-	padding:0 17px;
-	border: 1px solid #C0C0C0;
-	color: #5E5E5E;
-	text-decoration:none;
-	background:#fff;
-	-moz-border-radius: 15px;
-	-khtml-border-radius: 15px;
-	-webkit-border-radius: 15px;
-	border-radius: 15px;
-	font-weight:bold;
-}
-.banners_links a.active{
-	background:#18A5FF;
+	text-decoration: none;
 	color:#fff;
+	background:#777;
+	margin: 0 2px 0 5px;
+	padding: 2px 5px;
+	border-radius: 4px;
 }
-#move_to_banner{
-	display:none;
+.is_index a.is_index{
+	background: #0b0;
 }
-/*/ banners */
+/* chpu_filter /*/

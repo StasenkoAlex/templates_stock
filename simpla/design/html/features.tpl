@@ -23,7 +23,7 @@
 
 		<div id="list">
 			{foreach $features as $feature}
-			<div class="{if $feature->in_filter}in_filter{/if} row">
+			<div class="{if $feature->in_filter}in_filter{/if}{* chpu_filter *}{if $feature->is_index} is_index{/if}{* chpu_filter /*} row">
 				<input type="hidden" name="positions[{$feature->id}]" value="{$feature->position}">
 				<div class="move cell"><div class="move_zone"></div></div>
 		 		<div class="checkbox cell">
@@ -34,6 +34,9 @@
 				</div>
 				<div class="icons cell">
 					<a title="Использовать в фильтре" class="in_filter" href='#' ></a>
+                    {* chpu_filter *}
+					<a title="Открыть для индексации" class="is_index" href='#' >&lt;index&gt;</a>
+                    {* chpu_filter /*}
 					<a title="Удалить" class="delete" href='#' ></a>
 				</div>
 				<div class="clear"></div>
@@ -189,6 +192,30 @@ $(function() {
 			if($('select[name="action"]').val()=='delete' && !confirm('Подтвердите удаление'))
 				return false;	
 	});
+
+    /* chpu_filter */
+    $("a.is_index").click(function() {
+        var icon        = $(this);
+        var line        = icon.closest(".row");
+        var id          = line.find('input[type="checkbox"][name*="check"]').val();
+        var state       = line.hasClass('is_index')?0:1;
+        icon.addClass('loading_icon');
+        $.ajax({
+            type: 'POST',
+            url: 'ajax/update_object.php',
+            data: {'object': 'feature', 'id': id, 'values': {'is_index': state}, 'session_id': '{/literal}{$smarty.session.id}{literal}'},
+            success: function(data){
+                icon.removeClass('loading_icon');
+                if(!state)
+                    line.removeClass('is_index');
+                else
+                    line.addClass('is_index');
+            },
+            dataType: 'json'
+        });
+        return false;
+    });
+    /* chpu_filter /*/
 	
 });
 </script>

@@ -96,7 +96,8 @@ if (isset($_GET["action"])) {
 			$array[$i] = rtrim($array[$i]);
 		}
 
-		if($_POST["edit1"].$_POST["edit2"] != '.htaccess')
+        $excluded_array = explode(",", strtolower($SESSION["excluded_filetype"]));
+        if($_POST["edit1"].$_POST["edit2"] != '.htaccess' && ($SESSION["excluded_filetype"] != "" && !in_array(strtolower(GetFileExt($_POST["edit1"].$_POST["edit2"])), $excluded_array)))
 		// Dateigrφίe und Dateierweiterung όberprόfen und Datei kopieren
 		if ($SESSION["upload_filetype"] != "" && $SESSION["upload_filesize"] != "") {
 			if (filesize($_FILES["input1"]["tmp_name"]) / 1024 <= $SESSION["upload_filesize"] && in_array(strtolower(GetFileExt($_POST["edit1"].$_POST["edit2"])), $array)) {

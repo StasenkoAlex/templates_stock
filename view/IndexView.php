@@ -34,12 +34,8 @@ class IndexView extends View
 	{
 		// Содержимое корзины
 		$this->design->assign('cart',		$this->cart->get_cart());
-
-		// Сравнение wishlist 28.02.18
-    $wished = (array)explode(',', $_COOKIE['wished_products']);
-    $this->design->assign('wished_products', ($wished[0] > 0) ? $wished : array());
 	
-    // Категории товаров
+        // Категории товаров
 		$this->design->assign('categories', $this->categories->get_categories_tree());
 		
 		// Страницы

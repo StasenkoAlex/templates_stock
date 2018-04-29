@@ -5,18 +5,28 @@
 *}
 <html>
 <head>
+
 	<base href="{$config->root_url}/"/>
-	<title>{$meta_title|escape}</title>
+	<title>{$meta_title|escape}{* chpu_filter *}{$filter_meta->title|escape}{* chpu_filter /*}</title>
 	
 	{* Метатеги *}
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta name="description" content="{$meta_description|escape}" />
-	<meta name="keywords"    content="{$meta_keywords|escape}" />
+	<meta name="description" content="{$meta_description|escape}{* chpu_filter *}{$filter_meta->description|escape}{* chpu_filter /*}" />
+	<meta name="keywords"    content="{$meta_keywords|escape}{* chpu_filter *}{$filter_meta->keywords|escape}{* chpu_filter /*}" />
 	<meta name="viewport" content="width=1024"/>
-	
+	{* chpu_filter *}
+	{if $set_noindex}
+		<meta name=“robots” content=“noindex,nofollow” />
+	{/if}
+	{if $module == 'ProductsView' && !$set_noindex && $set_canonical}
+		<link rel="canonical" href="{$config->root_url}{furl}"/>
+    {else}
+	{* chpu_filter /*}
 	{* Канонический адрес страницы *}
 	{if isset($canonical)}<link rel="canonical" href="{$config->root_url}{$canonical}"/>{/if}
-	
+	{* chpu_filter *}
+    {/if}
+    {* chpu_filter /*}
 	{* Стили *}
 	<link href="design/{$settings->theme|escape}/css/style.css" rel="stylesheet" type="text/css" media="screen"/>
 	<link href="design/{$settings->theme|escape}/images/favicon.ico" rel="icon"          type="image/x-icon"/>
@@ -78,6 +88,22 @@
 	});
 	</script>
 	{/literal}
+    {* chpu_filter *}
+	<link href="design/{$settings->theme|escape}/css/jquery-ui-slider.min.css" rel="stylesheet" type="text/css" media="screen"/>
+	<script src="design/{$settings->theme}/js/jquery-ui-slider.min.js"></script>
+	<script src="design/{$settings->theme}/js/filter.js"></script>
+    {literal}
+		<style>
+			#slider-range{
+				width:90%;
+			}
+			#selected_prices{
+				margin-top:10px;
+			}
+		</style>
+    {/literal}
+    {* chpu_filter /*}
+
 		
 			
 </head>
@@ -211,9 +237,7 @@
 				<ul>
 					{foreach $currencies as $c}
 					{if $c->enabled} 
-					<li class="{if $c->id==$currency->id}selected{/if}">
-						<a href='{url currency_id=$c->id}'>{$c->name|escape}</a>
-					</li>
+					<li class="{if $c->id==$currency->id}selected{/if}"><a href='{url currency_id=$c->id}'>{$c->name|escape}</a></li>
 					{/if}
 					{/foreach}
 				</ul>

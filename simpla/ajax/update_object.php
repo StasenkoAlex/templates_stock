@@ -67,17 +67,6 @@ switch ($object)
     	if($simpla->managers->access('labels'))
         $result = $simpla->orders->update_label($id, $values);
         break;
-
-        /* banners */
-    case 'banner':
-        if($simpla->managers->access('banners'))
-        $result = $simpla->banners->update_banner($id, $values);
-        break;
-    case 'banners_image':
-        if($simpla->managers->access('banners'))
-        $result = $simpla->banners->update_banners_image($id, $values);
-        break;
-    /*/ banners */
 }
 
 header("Content-type: application/json; charset=UTF-8");

@@ -41,24 +41,6 @@ class Products extends Simpla
 		$in_stock_filter = '';
 		$group_by = '';
 		$order = 'p.position DESC';
-    
-    /* MultiFilter  */
-		$variant_filter = '';
-		$price_filter = '';
-		$variant_join = '';
-		if(isset($filter['variant']))
-		{
-      $variant_filter = $this->db->placehold(' AND pv.name in (?@) ', (array)$filter['variant']);
-			$variant_join = 'LEFT JOIN __variants pv ON pv.product_id = p.id';
-		}
-		if(isset($filter['price'])){
-      if(!empty($filter['price']['min']))
-        $price_filter .= $this->db->placehold(' AND (pv.price) >= ? ', $this->db->escape(trim($filter['price']['min'])));
-      if(!empty($filter['price']['max']))
-        $price_filter .= $this->db->placehold(' AND (pv.price) <= ? ', $this->db->escape(trim($filter['price']['max'])));
-        $variant_join = 'LEFT JOIN __variants pv ON pv.product_id = p.id';
-    } 
-    /*/ MultiFilter  */
 
 		if(isset($filter['limit']))
 			$limit = max(1, intval($filter['limit']));
@@ -120,12 +102,24 @@ class Products extends Simpla
 					$keyword_filter .= $this->db->placehold("AND (p.name LIKE '%$kw%' OR p.meta_keywords LIKE '%$kw%' OR p.id in (SELECT product_id FROM __variants WHERE sku LIKE '%$kw%'))");
 			}
 		}
-    
-    /* MultiFilter  */
-		if(!empty($filter['features']) && !empty($filter['features']))
-      foreach($filter['features'] as $feature=>$value)
-        $features_filter .= $this->db->placehold('AND p.id in (SELECT product_id FROM __options WHERE feature_id=? AND value in(?@) ) ', $feature, (array)$value);
-    /*/ MultiFilter  */
+
+		/* chpu_filter */
+        /*if(!empty($filter['features']) && !empty($filter['features']))
+			foreach($filter['features'] as $feature=>$value)
+				$features_filter .= $this->db->placehold('AND p.id in (SELECT product_id FROM __options WHERE feature_id=? AND value=? ) ', $feature, $value);*/
+        if(!empty($filter['features']) && !empty($filter['features']))
+            foreach($filter['features'] as $feature=>$value)
+                $features_filter .= $this->db->placehold('AND p.id in (SELECT product_id FROM __options WHERE feature_id=? AND translit in(?@) ) ', $feature, (array)$value);
+        $price_filter = '';
+        $variant_join = '';
+        if(isset($filter['price'])){
+            if(!empty($filter['price']['min']))
+                $price_filter .= $this->db->placehold(' AND pv.price>= ? ', $this->db->escape(trim($filter['price']['min'])));
+            if(!empty($filter['price']['max']))
+                $price_filter .= $this->db->placehold(' AND pv.price<= ? ', $this->db->escape(trim($filter['price']['max'])));
+            $variant_join = 'LEFT JOIN __variants pv ON pv.product_id = p.id';
+        }
+        /* chpu_filter /*/
 
 		$query = "SELECT  
 					p.id,
@@ -143,11 +137,11 @@ class Products extends Simpla
 					p.meta_description, 
 					b.name as brand,
 					b.url as brand_url
-				FROM __products p 
-				/* MultiFilter  */   
-        $variant_join
-        /*/ MultiFilter  */
+				FROM __products p		
 				$category_id_filter 
+				/* chpu_filter */
+                $variant_join
+                /* chpu_filter /*/
 				LEFT JOIN __brands b ON p.brand_id = b.id
 				WHERE 
 					1
@@ -155,14 +149,13 @@ class Products extends Simpla
 					$brand_id_filter
 					$features_filter
 					$keyword_filter
-					/* MultiFilter  */
-          $variant_filter
-          $price_filter
-          /*/ MultiFilter  */
 					$is_featured_filter
 					$discounted_filter
 					$in_stock_filter
 					$visible_filter
+					/* chpu_filter */
+                    $price_filter
+                    /* chpu_filter /*/
 				$group_by
 				ORDER BY $order
 					$sql_limit";
@@ -191,26 +184,7 @@ class Products extends Simpla
 		$in_stock_filter = '';
 		$discounted_filter = '';
 		$features_filter = '';
-
-		/* MultiFilter  */
-		$variant_filter = '';
-		$price_filter = '';
-		$variant_join = '';
 		
-		if(isset($filter['variant']))
-		{
-      $variant_filter = $this->db->placehold(' AND pv.name in (?@) ', (array)$filter['variant']);
-			$variant_join = 'LEFT JOIN __variants pv ON pv.product_id = p.id';
-		}
-		if(isset($filter['price'])){
-      if(!empty($filter['price']['min']))
-      	$price_filter .= $this->db->placehold(' AND (pv.price) >= ? ', $this->db->escape(trim($filter['price']['min'])));
-      if(!empty($filter['price']['max']))
-      	$price_filter .= $this->db->placehold(' AND (pv.price) <= ? ', $this->db->escape(trim($filter['price']['max'])));
-      $variant_join = 'LEFT JOIN __variants pv ON pv.product_id = p.id';
-    } 
-    /*/ MultiFilter  */
-
 		if(!empty($filter['category_id']))
 			$category_id_filter = $this->db->placehold('INNER JOIN __products_categories pc ON pc.product_id = p.id AND pc.category_id in(?@)', (array)$filter['category_id']);
 
@@ -243,34 +217,55 @@ class Products extends Simpla
 		if(isset($filter['visible']))
 			$visible_filter = $this->db->placehold('AND p.visible=?', intval($filter['visible']));
 		
-		/* MultiFilter  */
-		if(!empty($filter['features']) && !empty($filter['features']))
-      foreach($filter['features'] as $feature=>$value)
-        $features_filter .= $this->db->placehold('AND p.id in (SELECT product_id FROM __options WHERE feature_id=? AND value in(?@) ) ', $feature, (array)$value);
-    /*/ MultiFilter  */
 		
-		$query = "SELECT count(distinct p.id) as count
-				FROM __products AS p 
-				/* MultiFilter  */   
-        $variant_join
-        /*/ MultiFilter  */
+		/* chpu_filter */
+        /*if(!empty($filter['features']) && !empty($filter['features']))
+			foreach($filter['features'] as $feature=>$value)
+				$features_filter .= $this->db->placehold('AND p.id in (SELECT product_id FROM __options WHERE feature_id=? AND value=? ) ', $feature, $value);*/
+        if(!empty($filter['features']) && !empty($filter['features']))
+            foreach($filter['features'] as $feature=>$value)
+                $features_filter .= $this->db->placehold('AND p.id in (SELECT product_id FROM __options WHERE feature_id=? AND translit in(?@) ) ', $feature, (array)$value);
+
+        $price_filter = '';
+        $variant_join = '';
+        $select = 'count(distinct p.id) as count';
+        if(isset($filter['get_price'])){
+            $variant_join = 'LEFT JOIN __variants pv ON pv.product_id = p.id';
+            $select = 'MIN(pv.price) as min, MAX(pv.price) as max';
+        }elseif(isset($filter['price'])){
+            if(!empty($filter['price']['min']))
+                $price_filter .= $this->db->placehold(' AND pv.price>= ? ', $this->db->escape(trim($filter['price']['min'])));
+            if(!empty($filter['price']['max']))
+                $price_filter .= $this->db->placehold(' AND pv.price<= ? ', $this->db->escape(trim($filter['price']['max'])));
+            $variant_join = 'LEFT JOIN __variants pv ON pv.product_id = p.id';
+        }
+        /* chpu_filter /*/
+
+		$query = "SELECT /* chpu_filter *//*count(distinct p.id) as count*/$select/* chpu_filter /*/
+				FROM __products AS p
 				$category_id_filter
+				/* chpu_filter */
+                $variant_join
+                /* chpu_filter /*/
 				WHERE 1
 					$brand_id_filter
 					$product_id_filter
 					$keyword_filter
-          /* MultiFilter  */
-          $variant_filter
-          $price_filter
-          /*/ MultiFilter  */
 					$is_featured_filter
 					$in_stock_filter
 					$discounted_filter
 					$visible_filter
-					$features_filter ";
+					$features_filter 
+					/* chpu_filter */
+                    $price_filter
+                    /* chpu_filter /*/";
 
-		$this->db->query($query);	
-		return $this->db->result('count');
+		$this->db->query($query);
+        /* chpu_filter_extended */
+        if(isset($filter['get_price']))
+            return $this->db->result();
+        else/* chpu_filter_extended /*/
+		    return $this->db->result('count');
 	}
 
 
@@ -598,72 +593,7 @@ class Products extends Simpla
 										AND p.visible ORDER BY p.position DESC limit 1", $position, $category_id);
 		$this->db->query($query);
  
-		return $this->get_product((integer)$this->db->result('id'));	
-	}
-  
-
-  /* MultiFilter */
-	public function get_id_products($filter = array())
-  {   	 
-    // По умолчанию
-    $limit = 100;
-    $page = 1;
-    $category_id_filter = '';
-    $brand_id_filter = '';
-    $product_id_filter = '';
-    $features_filter = '';
-    $keyword_filter = '';
-    $variant_filter = '';
-    $visible_filter = '';
-    $visible_filter = '';
-    $is_featured_filter = '';
-    $discounted_filter = '';
-    $in_stock_filter = '';
-    $order = 'p.position DESC';
-
-    $variant_join = '';
-    
-    $sql_limit = $this->db->placehold(' LIMIT ?, ? ', ($page-1)*$limit, $limit);
-    
-    if(!empty($filter['id']))
-    	$product_id_filter = $this->db->placehold('AND p.id in(?@)', (array)$filter['id']);
-    
-    if(!empty($filter['category_id']))
-    	$category_id_filter = $this->db->placehold('INNER JOIN __products_categories pc ON pc.product_id = p.id AND pc.category_id in(?@)', (array)$filter['category_id']);
-    
-    if(!empty($filter['brand_id']))
-    	$brand_id_filter = $this->db->placehold('AND p.brand_id in(?@)', (array)$filter['brand_id']);
-    
-    if(!empty($filter['in_stock']))
-    	$in_stock_filter = $this->db->placehold('AND (SELECT 1 FROM __variants pv WHERE pv.product_id=p.id AND pv.price>0 AND (pv.stock IS NULL OR pv.stock>0) LIMIT 1) = ?', intval($filter['in_stock']));
-    
-    if(!empty($filter['visible']))
-    	$visible_filter = $this->db->placehold('AND p.visible=?', intval($filter['visible']));
-    
-    if(!empty($filter['features']) && !empty($filter['features']))
-    	foreach($filter['features'] as $feature=>$value)
-    		$features_filter .= $this->db->placehold('AND p.id in (SELECT product_id FROM __options WHERE feature_id=? AND value in(?@) ) ', $feature, (array)$value);
-
-    $query = "SELECT p.id
-    FROM __products p
-    $variant_join
-    $category_id_filter
-    LEFT JOIN __brands b ON p.brand_id = b.id
-    WHERE
-    1
-    $product_id_filter
-    $brand_id_filter
-    $features_filter
-    $in_stock_filter
-    $visible_filter
-    GROUP BY p.id";
-
-    $query = $this->db->placehold($query);
-    $this->db->query($query);
-
-    return $this->db->results();
-  } 
-  /*/ MultiFilter  */
+		return $this->get_product((integer)$this->db->result('id'));	}
 	
 		
 }

@@ -17,13 +17,15 @@ $CONFIG["hidden_folder"] = "";
 $CONFIG["hidden_subfolder"] = "";
 $CONFIG["hidden_filetype"] = "";
 
+$CONFIG["excluded_filetype"] = "php,htm,html,mhtml,phtml,shtml,xhtml,mhtm,mhtm,shtml,hta,js,jsp,jnlp,xml,yml,twig";
+
 $CONFIG["show_upload"] = "1";
 $CONFIG["upload_filetype"] = "";
 $CONFIG["upload_filesize"] = "";
 
 $CONFIG["check_session_variable"] = "";
 
-// Konfiguration der Oberfläche /  Configuration of the surface
+// Konfiguration der Oberflï¿½che /  Configuration of the surface
 $CONFIG["folder_tree_width"] = "220";
 $CONFIG["show_preview"] = "1";
 $CONFIG["preview_thumbnail_size"] = "200";

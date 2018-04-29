@@ -67,7 +67,11 @@ class ProductAdmin extends Simpla
 				{
 					$po[$f_id] = new stdClass;
 					$po[$f_id]->feature_id = $f_id;
-					$po[$f_id]->value = $val;
+                    /* chpu_filter */
+					//$po[$f_id]->value = $val;
+                    $po[$f_id]->value = $val['value'];
+                    $po[$f_id]->translit = $val['translit'];
+                    /* chpu_filter /*/
 				}
 				$options = $po;
 			}
@@ -246,7 +250,7 @@ class ProductAdmin extends Simpla
 					foreach($options as $option)
 					{
 						if(in_array($option->feature_id, $category_features))
-							$this->features->update_option($product->id, $option->feature_id, $option->value);
+							$this->features->update_option($product->id, $option->feature_id, $option->value/* chpu_filter */,$option->translit/* chpu_filter /*/);
 					}
 					
 					// Новые характеристики

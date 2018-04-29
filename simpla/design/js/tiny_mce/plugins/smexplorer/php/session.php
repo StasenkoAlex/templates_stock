@@ -4,7 +4,7 @@
 $SESSION = array();
 $QUERY = array();
 
-// Query-Zeichenkette entschlüsseln
+// Query-Zeichenkette entschlï¿½sseln
 if (isset($_GET["get"])) {
 	parse_str(RC4(@pack("H*", $_GET["get"])), $QUERY);
 }
@@ -13,17 +13,17 @@ else {
 	die;
 }
 
-// Query-Zeichenkette auf Vollständigkeit überprüfen
+// Query-Zeichenkette auf Vollstï¿½ndigkeit ï¿½berprï¿½fen
 if (!isset($QUERY["id"]) || !isset($QUERY["check_session_variable"])) {
 	include("error.php");
 	die;
 }
 
-// Verzeichnispfad überprüfen
+// Verzeichnispfad ï¿½berprï¿½fen
 if ($CONFIG["directory"] != "" && $CONFIG["directory"][0] != "/") { $CONFIG["directory"] = "/".$CONFIG["directory"]; }
 if ($CONFIG["directory"] != "" && $CONFIG["directory"][strlen($CONFIG["directory"])-1] != "/") { $CONFIG["directory"] = $CONFIG["directory"]."/"; }
 
-// Serverpfad überprüfen
+// Serverpfad ï¿½berprï¿½fen
 if ($CONFIG["server"] != "" && $CONFIG["server"][strlen($CONFIG["server"])-1] == "/") { $CONFIG["server"] = substr($CONFIG["server"], 0, -1); }
 
 // Initialisierung
@@ -45,13 +45,14 @@ $SESSION["upload_filesize"] = $CONFIG["upload_filesize"];
 $SESSION["check_session_variable"] = $CONFIG["check_session_variable"];
 $SESSION["document_root"] = $CONFIG["document_root"];
 $SESSION["treemenu"] = "0";
+$SESSION["excluded_filetype"] = $CONFIG["excluded_filetype"];
 
 // Query auswerten
 if (isset($QUERY["id"])) { $SESSION["id"] = $QUERY["id"]; }
 if (isset($QUERY["dir_root"]) && $QUERY["dir_root"] != "") {
 	$SESSION["dir_root"] = $QUERY["dir_root"];
 
-	// Verzeichnispfad überprüfen
+	// Verzeichnispfad ï¿½berprï¿½fen
 	$a = explode(",", $SESSION["dir_root"]);
 	for ($i = 0; $i < count($a); $i++) {
 		if ($a[$i][0] != "/") { $a[$i] = "/".$a[$i]; }
@@ -64,7 +65,7 @@ if (isset($QUERY["dir_root"]) && $QUERY["dir_root"] != "") {
 if (isset($QUERY["dir"])) { $SESSION["dir"] = $QUERY["dir"]; }
 if (isset($QUERY["server"]) && $QUERY["server"] != "") {
 
-	// Serverpfad überprüfen
+	// Serverpfad ï¿½berprï¿½fen
 	if ($QUERY["server"] != "" && $QUERY["server"][strlen($QUERY["server"])-1] == "/") { $QUERY["server"] = substr($QUERY["server"], 0, -1); }
 
 	$SESSION["server"] = $QUERY["server"];
@@ -93,7 +94,7 @@ if (isset($QUERY["hidden_subfolder"]) && $QUERY["hidden_subfolder"] != "") {
 if (isset($QUERY["hidden_filetype"]) && $QUERY["hidden_filetype"] != "") {
 	$SESSION["hidden_filetype"] = $QUERY["hidden_filetype"];
 
-	// Dateityp überprüfen
+	// Dateityp ï¿½berprï¿½fen
 	if ($SESSION["hidden_filetype"] == "") { $SESSION["hidden_filetype"] = "."; }
 }
 if (isset($QUERY["show_chmod"]) && $QUERY["show_chmod"] != "") {
@@ -115,13 +116,13 @@ if (isset($QUERY["treemenu"]) && $QUERY["treemenu"] != "") {
 	$SESSION["treemenu"] = $QUERY["treemenu"];
 }
 
-// Session-Variable überprüfen
+// Session-Variable ï¿½berprï¿½fen
 if ($SESSION["check_session_variable"] != "") {
 
 	// Session Starten
 	session_start();
 
-	// Session-Variable überprüfen
+	// Session-Variable ï¿½berprï¿½fen
 	if (!isset($_SESSION[$SESSION["check_session_variable"]])) {
 		include("error.php");
 		die;

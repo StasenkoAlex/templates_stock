@@ -37,7 +37,7 @@
 {elseif $page}
 <h1>{$page->name|escape}</h1>
 {else}
-<h1>{$category->name|escape} {$brand->name|escape}</h1>
+<h1>{$category->name|escape} {$brand->name|escape}{* chpu_filter *}{$filter_meta->h1|escape}{* chpu_filter /*}</h1>
 {/if}
 
 
@@ -50,7 +50,8 @@
 {/if}
 
 {* Фильтр по брендам *}
-{if $category->brands}
+{* chpu_filter *}
+{*if $category->brands}
 <div id="brands">
 	<a href="catalog/{$category->url}" {if !$brand->id}class="selected"{/if}>Все бренды</a>
 	{foreach $category->brands as $b}
@@ -61,7 +62,8 @@
 		{/if}
 	{/foreach}
 </div>
-{/if}
+{/if*}
+{* chpu_filter /*}
 
 {if $current_page_num==1}
 {* Описание бренда *}
@@ -69,7 +71,8 @@
 {/if}
 
 {* Фильтр по свойствам *}
-{if $features}
+{* chpu_filter *}
+{*if $features}
 <table id="features">
 	{foreach $features as $key=>$f}
 	<tr>
@@ -85,85 +88,45 @@
 	</tr>
 	{/foreach}
 </table>
-{/if}
+{/if*}
+{* chpu_filter /*}
 
 
 <!--Каталог товаров-->
 {if $products}
 
 {* Сортировка *}
-{if $products|count>0}
+{* chpu_filter *}
+{*if $products|count>0}
 <div class="sort">
 	Сортировать по 
 	<a {if $sort=='position'} class="selected"{/if} href="{url sort=position page=null}">умолчанию</a>
 	<a {if $sort=='price'}    class="selected"{/if} href="{url sort=price page=null}">цене</a>
 	<a {if $sort=='name'}     class="selected"{/if} href="{url sort=name page=null}">названию</a>
 </div>
-{/if}
-
-
-{include file='pagination.tpl'}
-
+{/if*}
+<div class="chpu-filter">
+	{include "chpu_filter.tpl"}
+</div>
+{*include file='pagination.tpl'*}
+<div class="chpu-pagination">
+    {include file='chpu_pagination.tpl'}
+</div>
+{* chpu_filter /*}
 
 <!-- Список товаров-->
-<ul class="products">
+<ul class="products chpu-products">
 
-	{foreach $products as $product}
-	<!-- Товар-->
-	<li class="product">
-		
-		<!-- Фото товара -->
-		{if $product->image}
-		<div class="image">
-			<a href="products/{$product->url}"><img src="{$product->image->filename|resize:200:200}" alt="{$product->name|escape}"/></a>
-		</div>
-		{/if}
-		<!-- Фото товара (The End) -->
-
-		<div class="product_info">
-		<!-- Название товара -->
-		<h3 class="{if $product->featured}featured{/if}"><a data-product="{$product->id}" href="products/{$product->url}">{$product->name|escape}</a></h3>
-		<!-- Название товара (The End) -->
-
-		<!-- Описание товара -->
-		<div class="annotation">{$product->annotation}</div>
-		<!-- Описание товара (The End) -->
-		
-		{if $product->variants|count > 0}
-		<!-- Выбор варианта товара -->
-		<form class="variants" action="/cart">
-			<table>
-			{foreach $product->variants as $v}
-			<tr class="variant">
-				<td>
-					<input id="variants_{$v->id}" name="variant" value="{$v->id}" type="radio" class="variant_radiobutton" {if $v@first}checked{/if} {if $product->variants|count<2}style="display:none;"{/if}/>
-				</td>
-				<td>
-					{if $v->name}<label class="variant_name" for="variants_{$v->id}">{$v->name}</label>{/if}
-				</td>
-				<td>
-					{if $v->compare_price > 0}<span class="compare_price">{$v->compare_price|convert}</span>{/if}
-					<span class="price">{$v->price|convert} <span class="currency">{$currency->sign|escape}</span></span>
-				</td>
-			</tr>
-			{/foreach}
-			</table>
-			<input type="submit" class="button" value="в корзину" data-result-text="добавлено"/>
-		</form>
-		<!-- Выбор варианта товара (The End) -->
-		{else}
-			Нет в наличии
-		{/if}
-
-		</div>
-		
-	</li>
-	<!-- Товар (The End)-->
-	{/foreach}
-			
+    {* chpu_filter *}
+	{include "chpu_products.tpl"}
+    {* chpu_filter /*}
 </ul>
-
-{include file='pagination.tpl'}	
+{* chpu_filter *}
+{*include file='pagination.tpl'*}
+<div class="chpu-pagination">
+	{include file='chpu_pagination.tpl'}
+</div>
+{* chpu_filter /*}
 <!-- Список товаров (The End)-->
 
 {else}

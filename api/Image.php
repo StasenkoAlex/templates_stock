@@ -28,7 +28,7 @@ class Image extends Simpla
 	 * @param max_h максимальная высота
 	 * @return $string имя файла превью
 	 */
-	function resize($filename/*resizing_image blog_image*/,$original_images_dir = null, $resized_images_dir = null/*/resizing_image blog_image*/)
+	function resize($filename)
 	{
 		list($source_file, $width , $height, $set_watermark) = $this->get_resize_params($filename);
 
@@ -50,22 +50,8 @@ class Image extends Simpla
 		
 	
 		// Пути к папкам с картинками
-        /*resizing_image blog_image*/
-        if ($original_images_dir && !$resized_images_dir) {
-            $resized_images_dir = $original_images_dir;
-        } else {
-            if (!$original_images_dir) {
-                $original_images_dir = $this->config->original_images_dir;
-            }
-            if (!$resized_images_dir) {
-                $resized_images_dir = $this->config->resized_images_dir;
-            }
-        }
-        $originals_dir = $this->config->root_dir.$original_images_dir;
-		$preview_dir = $this->config->root_dir.$resized_images_dir;
-		//$originals_dir = $this->config->root_dir.$this->config->original_images_dir;
-		//$preview_dir = $this->config->root_dir.$this->config->resized_images_dir;
-        /*/resizing_image blog_image*/
+		$originals_dir = $this->config->root_dir.$this->config->original_images_dir;
+		$preview_dir = $this->config->root_dir.$this->config->resized_images_dir;
 		
 		$watermark_offet_x = $this->settings->watermark_offset_x;
 		$watermark_offet_y = $this->settings->watermark_offset_y;
@@ -74,7 +60,7 @@ class Image extends Simpla
 		$watermark_transparency =  1-min(100, $this->settings->watermark_transparency)/100;
 	
 	
-		if($set_watermark && is_file($this->config->watermark_file))
+		if($set_watermark && is_file($this->config->root_dir.$this->config->watermark_file))
 			$watermark = $this->config->root_dir.$this->config->watermark_file;
 		else
 			$watermark = null;
@@ -151,7 +137,7 @@ class Image extends Simpla
 		return $new_name;
 	}
 
-	public function upload_image($filename, $name/*resizing_image blog_image*/, $original_dir = null/*/resizing_image blog_image*/)
+	public function upload_image($filename, $name)
 	{
 		// Имя оригинального файла
 		$name = $this->correct_filename($name);
@@ -159,14 +145,9 @@ class Image extends Simpla
 		$base = pathinfo($uploaded_file, PATHINFO_FILENAME);
 		$ext = pathinfo($uploaded_file, PATHINFO_EXTENSION);
 		
-        /*resizing_image blog_image*/
-        if (!$original_dir) {
-            $original_dir = $this->config->original_images_dir;
-        }
-        /*/resizing_image blog_image*/
 		if(in_array(strtolower($ext), $this->allowed_extentions))
 		{			
-			while(file_exists($this->config->root_dir./*resizing_image blog_image*/$original_dir/*$this->config->original_images_dir*//*/resizing_image blog_image*/.$new_name))
+			while(file_exists($this->config->root_dir.$this->config->original_images_dir.$new_name))
 			{	
 				$new_base = pathinfo($new_name, PATHINFO_FILENAME);
 				if(preg_match('/_([0-9]+)$/', $new_base, $parts))
@@ -174,7 +155,7 @@ class Image extends Simpla
 				else
 					$new_name = $base.'_1.'.$ext;
 			}
-			if(move_uploaded_file($filename, $this->config->root_dir./*resizing_image blog_image*/$original_dir/*$this->config->original_images_dir*//*/resizing_image blog_image*/.$new_name))			
+			if(move_uploaded_file($filename, $this->config->root_dir.$this->config->original_images_dir.$new_name))			
 				return $new_name;
 		}
 
@@ -442,7 +423,7 @@ class Image extends Simpla
 	private function files_identical($fn1, $fn2)
 	{
 		$buffer_len = 1024;
-	    if(!$fp1 = fopen($fn1, 'rb'))
+	    if(!$fp1 = fopen(dirname(dirname(__FILE__)).'/'.$fn1, 'rb'))
 	        return FALSE;
 	
 	    if(!$fp2 = fopen($fn2, 'rb')) {
@@ -477,46 +458,5 @@ class Image extends Simpla
 	 	$res = strtolower($res);
 	    return $res;  
 	}
-    
-    /*resizing_image blog_image*/
-    /**
-	* id - id сущности
-	* field - поле в таблице
-	* table - имя таблицы без префиксов like "blog"(not "__blog" or "s_blog")
-	*/
-    public function delete_image($id, $field = null, $table = null, $original_dir = null, $resized_dir = null) {
-        if (!$field || !$table || !$original_dir) {
-            return false;
-        }
-		$query = $this->db->placehold("SELECT $field FROM __$table WHERE id=?", $id);
-		$this->db->query($query);
-		$filename = $this->db->result($field);
-		
-        if (!empty($filename)) {
-            $query = $this->db->placehold("UPDATE __$table SET $field='' WHERE id=?", $id);
-            $this->db->query($query);
-            
-            $query = $this->db->placehold("SELECT count(*) as count FROM __$table WHERE $field=? LIMIT 1", $filename);
-    		$this->db->query($query);
-    		$count = $this->db->result('count');
-            if($count == 0) {
-    			$file = pathinfo($filename, PATHINFO_FILENAME);
-    			$ext = pathinfo($filename, PATHINFO_EXTENSION);
-    			
-    			// Удалить все ресайзы
-    			if (!empty($resized_dir)) {
-                    $rezised_images = glob($this->config->root_dir.$resized_dir.$file.".*x*.".$ext);
-                    if(is_array($rezised_images)) {
-                        foreach (glob($this->config->root_dir.$resized_dir.$file.".*x*.".$ext) as $f) {
-                            @unlink($f);
-                        }
-                    }
-                }
-                
-    			@unlink($this->config->root_dir.$original_dir.$filename);		
-    		}
-        }
-	}
-    /*/resizing_image blog_image*/
 	
 }

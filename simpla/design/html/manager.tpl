@@ -103,15 +103,8 @@ $(function() {
 					'currency'   =>'Валюты',
 					'delivery'   =>'Способы доставки',
 					'payment'    =>'Способы оплаты',
-					'managers'   =>'Менеджеры',
-					'license'    =>'Управление лицензией',
-					'banners'	 =>'Управление баннерами'
+					'managers'   =>'Менеджеры'
 				]}
-
-				{* banners *}
-				{* В перечислении выше добавлена строчка:
-				,'banners'	 =>'Управление баннерами' *}
-				{*/ banners *}
 				
 				{foreach $perms as $p=>$name}
 				<li><label class=property for="{$p}">{$name}</label>

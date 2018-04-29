@@ -931,4 +931,24 @@ table.order_info td
 
 /* @end */
 
-
+/* chpu_filter */
+.#slider-range{
+	width:90%;
+}
+#selected_prices{
+	margin-top:10px;
+}
+.chpu-loading{
+	position: relative;
+	overflow: hidden;
+}
+.chpu-loading:after{
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(200,200,200,.5) center center no-repeat url(../images/loader.gif);
+}
+/* chpu_filter /*/
