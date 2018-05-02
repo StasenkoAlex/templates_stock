@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2017-11-14 12:40:08
+<?php /* Smarty version Smarty-3.1.18, created on 2018-05-02 16:52:04
          compiled from "simpla\design\html\product.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:162255a0ab9f8533ae8-93063679%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '3f18dfe5f48ef059e152ab919b3f13338168bbfc' => 
     array (
       0 => 'simpla\\design\\html\\product.tpl',
-      1 => 1492708202,
+      1 => 1525023390,
       2 => 'file',
     ),
   ),
@@ -23,6 +23,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       'compiled' => '',
     ),
   ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_5a0ab9f87d0324_31045052',
   'variables' => 
   array (
     'product' => 0,
@@ -53,8 +55,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'related_product' => 0,
   ),
   'has_nocache_code' => 0,
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5a0ab9f87d0324_31045052',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5a0ab9f87d0324_31045052')) {function content_5a0ab9f87d0324_31045052($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_replace')) include 'E:\\Work\\OSPanel\\domains\\test\\Smarty\\libs\\plugins\\modifier.replace.php';
 if (!is_callable('smarty_modifier_truncate')) include 'E:\\Work\\OSPanel\\domains\\test\\Smarty\\libs\\plugins\\modifier.truncate.php';

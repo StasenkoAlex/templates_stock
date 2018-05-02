@@ -401,8 +401,8 @@ if( $("#slider-range").length ){
   });
 });
 
-//Работа слайдера филтра-цены на мою версии
-  $('.ui-slider-handle').draggable();
+//Работа слайдера филтра-цены на моб версии
+  //$('.ui-slider-handle').draggable();
  
 
 

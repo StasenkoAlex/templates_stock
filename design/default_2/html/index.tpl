@@ -39,7 +39,7 @@
 	{* Общий скрипт *}
   <script src="design/{$settings->theme}/js/jquery-ui.min.js"></script>
 	<script src="design/{$settings->theme}/js/jquery-ui-slider.min.js"></script>
-	<script src="design/{$settings->theme}/js/slider-fix.js"></script>
+	<script src="design/{$settings->theme}/js/jquery.ui.touch-punch.min.js"></script>
   <script src="design/{$settings->theme}/js/script.js"></script>
 
   <link href="design/{$settings->theme|escape}/css/jquery-ui-slider.min.css" rel="stylesheet" type="text/css" media="screen"/>
