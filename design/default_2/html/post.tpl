@@ -11,6 +11,11 @@
   </div>
   <div class="container">
   <h1 class="post__title" data-post="{$post->id}">{$post->name|escape}</h1>
+  {*blog_image*}
+{if $post->image}
+    <img src="{$post->image|resize:200:200:false:$config->resized_blog_dir}" alt="" />
+{/if}
+{*/blog_image*}
   <div class="post__item-info">
     <span class="post__item-date">
       {include file="svg.tpl" svgId="ic_clock" width="16px" height="16px"}

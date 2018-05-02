@@ -78,6 +78,15 @@ brands_images_dir = files/brands/;
 ;Файл изображения с водяным знаком
 watermark_file = simpla/files/watermark/watermark.png;
 
+;resizing_image
+
+;blog_image
+original_blog_dir = files/blog/;
+resized_blog_dir = files/blog_resized/;
+;/blog_image
+
+;/resizing_image
+
 [files]
 
 ;Директория хранения цифровых товаров
