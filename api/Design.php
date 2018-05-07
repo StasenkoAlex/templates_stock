@@ -215,15 +215,13 @@ class Design extends Simpla
 
 		$resized_filename_encoded = rawurlencode($resized_filename_encoded);
 
-			/*resizing_image blog_image*/
+		/*resizing_image blog_image*/
         if (!$resized_dir) {
             $resized_dir = $this->config->resized_images_dir;
         }
         return $this->config->root_url.'/'.$resized_dir.$resized_filename_encoded.'?'.$this->config->token($resized_filename);
         //return $this->config->root_url.'/'.$this->config->resized_images_dir.$resized_filename_encoded.'?'.$this->config->token($resized_filename);
         /*/resizing_image blog_image*/
-
-		return $this->config->root_url.'/'.$this->config->resized_images_dir.$resized_filename_encoded.'?'.$this->config->token($resized_filename);
 	}
 
 	public function token_modifier($text)

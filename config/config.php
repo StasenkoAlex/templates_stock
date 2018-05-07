@@ -65,13 +65,6 @@ resized_images_dir = files/products/;
 ;Изображения категорий
 categories_images_dir = files/categories/;
 
-
-/* banners */
-;Изображения баннеров
-banners_images_dir = files/slides/;
-/*/ banners */
-
-
 ;Изображения брендов
 brands_images_dir = files/brands/;
 

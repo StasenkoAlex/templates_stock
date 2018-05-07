@@ -48,28 +48,25 @@ class Image extends Simpla
 		
 		$resized_file = $this->add_resize_params($original_file, $width, $height, $set_watermark);			
 		
-	
+
 		// Пути к папкам с картинками
-    
-            /*resizing_image blog_image*/
-        if ($original_images_dir && !$resized_images_dir) {
-            $resized_images_dir = $original_images_dir;
-        } else {
-            if (!$original_images_dir) {
-                $original_images_dir = $this->config->original_images_dir;
-            }
-            if (!$resized_images_dir) {
-                $resized_images_dir = $this->config->resized_images_dir;
-            }
-        }
-        $originals_dir = $this->config->root_dir.$original_images_dir;
-		$preview_dir = $this->config->root_dir.$resized_images_dir;
-		//$originals_dir = $this->config->root_dir.$this->config->original_images_dir;
-		//$preview_dir = $this->config->root_dir.$this->config->resized_images_dir;
-				/*/resizing_image blog_image*/
+    /*resizing_image blog_image*/
+      if ($original_images_dir && !$resized_images_dir) {
+          $resized_images_dir = $original_images_dir;
+      } else {
+          if (!$original_images_dir) {
+              $original_images_dir = $this->config->original_images_dir;
+          }
+          if (!$resized_images_dir) {
+              $resized_images_dir = $this->config->resized_images_dir;
+          }
+      }
+      $originals_dir = $this->config->root_dir.$original_images_dir;
+		  $preview_dir = $this->config->root_dir.$resized_images_dir;
+		  //$originals_dir = $this->config->root_dir.$this->config->original_images_dir;
+		  //$preview_dir = $this->config->root_dir.$this->config->resized_images_dir;
+    /*/resizing_image blog_image*/
 				
-		$originals_dir = $this->config->root_dir.$this->config->original_images_dir;
-		$preview_dir = $this->config->root_dir.$this->config->resized_images_dir;
 		
 		$watermark_offet_x = $this->settings->watermark_offset_x;
 		$watermark_offet_y = $this->settings->watermark_offset_y;

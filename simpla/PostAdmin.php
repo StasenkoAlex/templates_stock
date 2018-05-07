@@ -43,8 +43,8 @@ class PostAdmin extends Simpla
 					$this->design->assign('message_success', 'updated');
 						}	
 						
-						                /*blog_image*/
-                // Удаление изображения
+						/*blog_image*/
+             // Удаление изображения
                 if($this->request->post('delete_image')) {
   	    			$this->image->delete_image($post->id, 'image', 'blog', $this->config->original_blog_dir, $this->config->resized_blog_dir);
   	    		}
@@ -55,7 +55,7 @@ class PostAdmin extends Simpla
   	    			$this->blog->update_post($post->id, array('image'=>$filename));
   	    		}
   	    		$post = $this->blog->get_post(intval($post->id));
-                /*/blog_image*/
+          /*/blog_image*/
 			}
 		}
 		else

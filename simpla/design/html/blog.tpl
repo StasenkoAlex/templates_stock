@@ -47,7 +47,7 @@
 					<input type="checkbox" name="check[]" value="{$post->id}" />				
 				</div>
 				{*blog_image*}
-                <div class="image cell">
+          <div class="image cell">
     				{if $post->image}
     				    <a href="{url module=PostAdmin id=$post->id return=$smarty.server.REQUEST_URI}"><img src="{$post->image|resize:35:35:false:$config->resized_blog_dir}" /></a>
     				{/if}

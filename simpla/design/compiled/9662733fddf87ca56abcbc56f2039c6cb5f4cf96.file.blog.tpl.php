@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2018-02-28 11:40:10
+<?php /* Smarty version Smarty-3.1.18, created on 2018-05-04 10:49:43
          compiled from "simpla\design\html\blog.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:91535a966aea68e225-36451358%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '9662733fddf87ca56abcbc56f2039c6cb5f4cf96' => 
     array (
       0 => 'simpla\\design\\html\\blog.tpl',
-      1 => 1492708202,
+      1 => 1525419246,
       2 => 'file',
     ),
   ),
@@ -15,16 +15,17 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_5a966aea785fa2_18315133',
   'variables' => 
   array (
     'posts' => 0,
     'keyword' => 0,
     'posts_count' => 0,
     'post' => 0,
+    'config' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5a966aea785fa2_18315133',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5a966aea785fa2_18315133')) {function content_5a966aea785fa2_18315133($_smarty_tpl) {?>
 <?php $_smarty_tpl->_capture_stack[0][] = array('tabs', null, null); ob_start(); ?>
@@ -96,6 +97,15 @@ $_smarty_tpl->tpl_vars['post']->_loop = true;
 					<input type="checkbox" name="check[]" value="<?php echo $_smarty_tpl->tpl_vars['post']->value->id;?>
 " />				
 				</div>
+				
+          <div class="image cell">
+    				<?php if ($_smarty_tpl->tpl_vars['post']->value->image) {?>
+    				    <a href="<?php echo $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['url'][0][0]->url_modifier(array('module'=>'PostAdmin','id'=>$_smarty_tpl->tpl_vars['post']->value->id,'return'=>$_SERVER['REQUEST_URI']),$_smarty_tpl);?>
+"><img src="<?php echo $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_MODIFIER]['resize'][0][0]->resize_modifier($_smarty_tpl->tpl_vars['post']->value->image,35,35,false,$_smarty_tpl->tpl_vars['config']->value->resized_blog_dir);?>
+" /></a>
+    				<?php }?>
+    			</div>
+          
 				<div class="name cell">		
 					<a href="<?php echo $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['url'][0][0]->url_modifier(array('module'=>'PostAdmin','id'=>$_smarty_tpl->tpl_vars['post']->value->id,'return'=>$_SERVER['REQUEST_URI']),$_smarty_tpl);?>
 "><?php echo htmlspecialchars($_smarty_tpl->tpl_vars['post']->value->name, ENT_QUOTES, 'UTF-8', true);?>

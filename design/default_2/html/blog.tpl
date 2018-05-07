@@ -1,42 +1,42 @@
 {* Список записей блога *}
-
 {* Канонический адрес страницы *}
 {$canonical="/blog" scope=parent}
 <div class="blog">
-  <div class="container">
-  <!-- Заголовок /-->
-  {include file='crumbles.tpl'}
-    <h1 class="blog__title">{$page->name}</h1>
+  <div class="container-fluid container-fluid--grey post__crumbles">
+    <!-- Заголовок /-->
     {include file='crumbles.tpl'}
-    <!-- Статьи /-->
-    <ul class="blog__list">
+    <!-- Заголовок /-->
+  </div>
+  <div class="container">
+    <!-- Заголовок /-->
+    {include file='crumbles.tpl'}
+    <ul class="blog__list row">
       {foreach $posts as $post}
-      <li class="blog__item">
-        <h3 class="blog__item-title">
-          <a data-post="{$post->id}" href="blog/{$post->url}">{$post->name|escape}</a>
-        </h3>
-         {*blog_image*}
-        {if $post->image}
-            <a data-post="{$post->id}" href="blog/{$post->url}"><img src="{$post->image|resize:100:100:false:$config->resized_blog_dir}" alt="" /></a>
-        {/if}
-        {*/blog_image*}
-        <div class="blog__item-info">
-          <span class="blog__item-date">
-            {include file="svg.tpl" svgId="ic_clock" width="16px" height="16px"}
-            {$post->date|date}
-          </span>
-          {if $comments}
-          <span class="blog__item-commetns">
-            {include file="svg.tpl" svgId="ic_commetns" width="16px" height="16px"}{$comments|count}
-          </span>
+      <li class="blog__item col-xs-12 col-sm-6 col-lg-4">
+        <div class="blog__image-wrap">
+          {*blog_image*}
+          {if $post->image}
+          <a href="blog/{$post->url}" class="blog__image" data-post="{$post->id}" style="background-image: url({$post->image|resize:800:450:false:$config->resized_blog_dir});">  </a>
           {/if}
+          {*/blog_image*}
+          <div class="blog__item-text">
+            <a class="blog__item-title" href="blog/{$post->url}">{$post->name|escape}</a>
+            <time class="blog__item-date" datetime="{$post->date}">
+            {include file="svg.tpl" svgId="ic_calendar" width="13px"}
+            {$post->date|date}
+            </time>
+          </div>
         </div>
-        <div class="blog__item-annotation">{$post->annotation}</div>
-        <a data-post="{$post->id}" href="blog/{$post->url}" class="btn blog__item-btn">Прочесть статью</a>
+        <div class="blog__info">
+          {if $post->annotation}
+          <div class="blog__item-intro">{$post->annotation|strip_tags}</div>
+          {/if}
+          <a class="blog__item-button btn" href="blog/{$post->url}">Подробнее</a>
+        </div>
       </li>
       {/foreach}
     </ul>
-  <!-- Статьи #End /-->    
-  {include file='pagination.tpl'}
-  </div>        
+    <!-- Статьи #End /-->
+    {include file='pagination.tpl'}
+  </div>
 </div>
